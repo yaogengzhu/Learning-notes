@@ -337,3 +337,48 @@ function cloneDeep(obj) {
     return newObj
 }
 ```
+
+> 箭头函数
+
+```js
+let sum21 = function(a, b) {
+    return a + b
+}
+
+// 简化1
+let sum31 = (a, b) =>  {
+    return a + b
+}
+
+// 简化2 
+let sum22 = (a, b) => a + b
+
+// 简化3 如果只有一个参数
+let test = b => b
+
+let obj = {
+    name1: 'zhuyaogeng',
+    getName() {
+        setTimeout(() => {
+            console.log(this.name1, 'name1')
+        }, 100)
+    }
+}
+obj.getName()
+```
+
+> 结果
+```md
+/user
+GET
+json
+$19.25
+7
+[ 1, 2, 3, 4, 5, 6 ]
+[ 1, 2, 3, 4, 5, 6 ]
+6
+{}
+{ name: 1, age: 22 }
+huangshi
+wuhan
+```
