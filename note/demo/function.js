@@ -141,17 +141,27 @@ function cloneObj(origin) {
 
 // 箭头函数
 // 声明函数更简单的实现过程
-let sum = function(a, b) {
+let sum21 = function(a, b) {
     return a + b
 }
 
 // 简化1
-let sum1 = (a, b) =>  {
+let sum31 = (a, b) =>  {
     return a + b
 }
 
 // 简化2 
-let sum2 = (a, b) => a + b
+let sum22 = (a, b) => a + b
 
 // 简化3 如果只有一个参数
 let test = b => b
+
+let obj = {
+    name1: 'zhuyaogeng',
+    getName() {
+        setTimeout(() => {
+            console.log(this.name1, 'name1')
+        }, 100)
+    }
+}
+obj.getName()
