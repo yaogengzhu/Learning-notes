@@ -201,3 +201,139 @@ true
 true
 ```
 
+## 函数
+> 1. 默认参数 (a.必填项不填报错 b. 有些参数不传递参数的话有默认值)
+```js
+function ajax(url = new Error('url 不能为空'), method = 'GET', dataType = 'json') {
+    console.log(url)
+    console.log(method)
+    console.log(dataType)
+
+    // if (typeof url === 'undefined') thorw Error('url 不能为空')
+    
+}
+```
+
+>  解析成es5
+```js
+"use strict";
+function ajax() {
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Error('url 不能为空');
+  var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
+  var dataType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'json';
+  console.log(url);
+  console.log(method);
+  console.log(dataType); 
+  // if (typeof url === 'undefined') thorw Error('url 不能为空')
+}
+ajax('/user')
+```
+
+> 2. 展开操作符
+
+- 使用reduce的方法求和 + 求平均值
+- 封装自己的reduce方法
+```js
+function sum(prefix, a, b) {
+    return prefix + (a + b)
+}
+function sum1(prefix, ...rest) {
+    // 1. 循环求和
+    // let result = 0
+    // rest.forEach(function(item){
+    //     result += item
+    // })
+
+    // 2 reduce 计算 汇总 收敛 把数组中的一堆值计算出来一个值
+
+    // 可以传递一个参数，也可以传递两个参数
+    // 第二个参数为初始值 0 
+    let result = rest.reduce(function(val, item, index, origin) {
+        return val + item   // 返回值会成为函数下一次执行的val
+    }, 0)
+
+    // 求均值
+    let avage = rest.reduce( function(val, item, index, origin) {
+        let sum = val + item  // 返回值会成为函数下一次执行的val
+        if (index === 0) {
+            return sum/ origin.length
+        } else {
+            return sum
+        }
+    }, 0)
+
+    return prefix + avage
+}
+console.log(sum1('$', 1 , 3, 4, 12))
+
+
+// 实现reduce方法
+Array.prototype.reduce1 = function(reducer, initialval) {
+    for (let i = 0; i < this.length; i++ ) {
+        // 递归
+        initialval = reducer(initialval, this[i])
+    }
+    return initialval
+}
+
+const result2 = [1,2, 4].reduce1(function(val, item) {
+    return val + item
+}, 0)
+
+console.log(result2)
+
+
+let arr4 = [1, 2, 3]
+let arr5 = [4, 5, 6]
+let arr6 = [].concat(arr4).concat(arr5)
+// 展开运算符，相当于把数组的每个元素依次取出放出
+let arr7 = [...arr4, ...arr5]
+console.log(arr6)
+console.log(arr7)
+
+// 拿出最大值
+let max = Math.max(...arr7)
+console.log(max)
+
+let obj1 = { name: 1 } 
+let obj2 = { age: 22 }
+let obj3 = {}
+
+```
+
+> 对象复制
+- 1. 循环赋值
+```js
+for(let key in obj1) {
+    obj3[key] = obj1[key]
+}
+for(let key in obj2) {
+    obj3[key] = obj2[key]
+}
+console.log(obj3)
+
+```
+- 2 assign
+```js
+Object.assign(obj3, obj1, obj2)
+console.log(obj3)
+```
+- 3 对象解构方式
+```js
+obj3 = {...obj1, ...obj2}
+console.log(obj3)
+
+// 实现简单的深拷贝
+function cloneDeep(obj) {
+    let newObj = {}
+    for(let key in obj) {
+        if (typeof key === 'object') {
+            newObj[key] = cloneDeep(obj[key])
+        } else {
+            newObj[key] = obj[key]
+        }
+    }
+
+    return newObj
+}
+```
