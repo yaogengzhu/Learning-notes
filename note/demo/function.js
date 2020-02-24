@@ -90,17 +90,17 @@ let obj2 = { age: 22 }
 let obj3 = {}
 
 // 1. 循环赋值
-// for(let key in obj1) {
-//     obj3[key] = obj1[key]
-// }
-// for(let key in obj2) {
-//     obj3[key] = obj2[key]
-// }
+for(let key in obj1) {
+    obj3[key] = obj1[key]
+}
+for(let key in obj2) {
+    obj3[key] = obj2[key]
+}
 console.log(obj3)
 
 // 2. assign
-// Object.assign(obj3, obj1, obj2)
-// console.log(obj3)
+Object.assign(obj3, obj1, obj2)
+console.log(obj3)
 
 // 3. 对象解构
 obj3 = {...obj1, ...obj2}
@@ -165,3 +165,18 @@ let obj = {
     }
 }
 obj.getName()
+
+
+let obj8 = {
+    name: 'yaogengzhu',
+    getName: () => {
+        console.log(this.name)
+    }
+}
+
+let obj9 = {
+    name: 9,
+    gn: obj8.getName
+}
+
+obj9.gn()
