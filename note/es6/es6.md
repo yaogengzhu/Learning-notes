@@ -382,3 +382,177 @@ $19.25
 huangshi
 wuhan
 ```
+
+## 数组
+>  数组方法
+```js
+let arr1 = [25, 66, 88, 99, 5]
+// filter 方法 (返回true，会保留在新数组中，否则会被删除)
+
+Array.prototype.filter1 = function(fn) {
+    let newArr = []
+  
+    for (let i = 0; i < this.length; i++ ) {
+        let flag = fn(this[i])
+        flag && newArr.push(this[i])
+
+    }
+    return newArr
+}
+
+let arr2 = arr1.filter1(function(item) {
+    return item > 44
+})
+
+console.log(arr2)
+```
+> fill 方法
+```js
+let arr3 = Array(3)
+arr3.fill(3)
+console.log(arr3)
+
+```
+
+> 常用的 forEach map filter some find findIndex every
+```js
+
+let arr4 = [1, 2, 3]
+Array.prototype.find1 = function(fn) {
+    for(let i=0; i < this.length; i++) {
+        let flag = fn(this[i])
+        if (flag) {
+            return this[i]
+        }
+    }
+}
+let result = arr4.find(function(item) {
+    return item === 2
+})
+console.log(result)
+
+//findIndex
+Array.prototype.findIndex1 = function(fn) {
+    for(let i=0; i < this.length; i++) {
+        let flag = fn(this[i])
+        if (flag) {
+            // return this[i]
+            return i
+        }
+    }
+}
+
+// some 
+Array.prototype.some1 = function(fn) {
+    for(let i=0; i < this.length; i++) {
+        let flag = fn(this[i])
+        if (flag) {
+            return flag 
+        } else {
+            return false
+        }
+    }
+}
+
+// every 
+Array.prototype.some1 = function(fn) {
+    for(let i=0; i < this.length; i++) {
+        let flag = fn(this[i])
+        if (!flag) {
+            return false 
+        }
+        return true
+    }
+}
+
+// Array.from 类数组转成数组
+// function print() {
+//     Array.from(arguments).forEach(funtion(item) {
+//         console.log(item)
+//     })
+// }
+
+// Array.of(3) 
+let arr5 = Array.of(4)
+console.log(arr5)
+```
+
+> 结果
+```md
+[ 66, 88, 99 ]
+[ 3, 3, 3 ]
+2
+[ 4 ]
+```
+
+## 对象
+
+```js
+// 对象
+let name = 'yaogengzhu'
+let age = 10
+let obj1 = {
+    name: name,
+    age: age
+}
+// 如果对象属性名和变量一直可以只写一个
+let obj2 = {
+    name,
+    age
+}
+console.log(obj1, obj2)
+
+let obj3 = { age: 1}
+let obj4 = { age: 2}
+let obj5 = {}
+// obj5 继承自obj3 设置obj5的原型为obj3
+// obj5.__proto__ = obj3
+Object.setPrototypeOf(obj5, obj3)
+// 
+let obj6 = {
+    __proto__: obj3
+}
+console.log(obj5.age, obj6.age)
+
+let obj7 = { age: 1, getFood() {
+    return '面包'
+}}
+
+let obj8 = {
+    __proto__: obj7,
+    getFood() {
+        // 可以通过super调用父亲的方法
+        return '牛奶' + super.getFood()
+    }
+}
+
+```
+
+> 结果
+```md
+{ name: 'yaogengzhu', age: 10 } { name: 'yaogengzhu', age: 10 }
+1 1
+
+## class 
+```js
+// 类
+
+/**
+ *  以前js的类和构造函数是一体的,
+ *  类里面可以定义构造函数，当你创建一个实例的时候就会创建构造函数
+ */
+
+// 定义一个类， 创建实例
+class Parent {
+    constructor(name) {
+        this.name = name  // 实例的私有属性
+    }
+    // 属于实例的公有属性， 也相当于原型上的属性
+    getName() {
+        console.log(this.name)
+    }
+}
+
+let p = new Parent('yaogengzhu')
+console.log(p.getName())
+```
