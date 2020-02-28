@@ -41,8 +41,21 @@ function Promise(task) {
 
 Promise.prototype.then = function (onFulfilled, onReject) {
     let that = this
+    if (that.status === 'fulfilled') {
+        // 成功态直接执行
+        onFulfilled(that.value)
+    }
+
+    if (that.status === 'rejected') {
+        onReject(that.value)
+    }
     that.onResolvedCallbacks.push(onFulfilled)
     that.onRejectedCallbacks.push(onReject)
+    if (that.status === 'pending') {
+        that.onResolvedCallbacks.push(onFulfilled)
+        that.onRejectedCallbacks.push(onReject)
+    }
+    
 }
 
 module.exports = Promise
