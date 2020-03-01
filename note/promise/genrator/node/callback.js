@@ -1,13 +1,43 @@
+const fs = require('fs')
+const path = require('path')
+console.log(path.resolve(__dirname))
 
-let fs = require('fs')
-fs.readFile('./data.txt', 'utf-8', function (err, data) {
-    console.log(data)
+
+// let html = {}
+
+// function done(key, value) {
+//     html[key] = value
+    
+//     if (Object.keys(html).length === 2) {
+//         console.log(html)
+//     }
+// }
+
+function read(length, cb) {
+    let html = {}
+    return function(key, value) {
+        html[key] = value
+        if (Object.keys(html).length === length) {
+            cb(html)
+        }
+    }
+    
+}
+
+let done = read(3, function(html) {
+    console.log(html)
+})
+fs.readFile(path.resolve(__dirname, '1.txt'), 'utf-8', function(err, data) {
+    // console.log(data)
+    done('data', data)
 })
 
-fs.readFile('./data.txt', function(err, data) {
-    console.log(err)
+fs.readFile(path.resolve(__dirname, '2.txt'), 'utf-8', function(err, data) {
+    // console.log(data)
+    done('template', data)
 })
 
-// 发布订阅模式
-
-let html = {}
+fs.readFile(path.resolve(__dirname, '2.txt'), 'utf-8', function(err, data) {
+    // console.log(data)
+    done('template1', data)
+})
