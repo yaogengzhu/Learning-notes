@@ -3,16 +3,7 @@ const path = require('path')
 console.log(path.resolve(__dirname))
 
 
-// let html = {}
-
-// function done(key, value) {
-//     html[key] = value
-    
-//     if (Object.keys(html).length === 2) {
-//         console.log(html)
-//     }
-// }
-
+// 哨兵变量
 function read(length, cb) {
     let html = {}
     return function(key, value) {
