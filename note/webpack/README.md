@@ -52,3 +52,53 @@ module.exports ={
 -  MacBook-Pro:webpack yaogengzhu$ npm run build --  --config webpack.myconfig.js
 
 
+### 内置开发静态服务
+> `webpack-dev-server`
+- yarn add webpack-dev-server
+
+安装html-webpack-server 插件！
+- 使用命令模式启动： npx webpack-dev-server
+- 配置pack.json: "dev": "webpack-dev-server"   , npm run dev 即可
+- 配置config： 
+  ```js
+   devServer: {
+        port: 3000,  // 端口号
+        progress: true,  // 显示进度
+        contentBase: './dist', // 指定目录
+        compress: true, // gzip 压缩
+        open: true // 自动打开浏览器, 热更新
+    },
+  ```
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    devServer: {
+        port: 3000,
+        progress: true,
+        contentBase: './dist',
+        compress: true, // gzip 压缩
+    },
+    mode: 'production',
+    entry: path.resolve(__dirname, './src/index.js'),
+    output: {
+        filename: 'bundle.[hash:8].js', // 每次修改产生一个新的文件 :8 表示文件名变短
+        path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            minify: {
+                removeAttributeQuotes: true, //删除属性的双引号
+                collapseWhitespace: true, // 变成一行
+            },
+            hash: true, // hash标识，缓存问题
+        })
+    ]
+}
+```
+
+
