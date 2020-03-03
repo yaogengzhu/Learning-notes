@@ -243,3 +243,37 @@ module.exports = {
 }
 
 ```
+
+### 那么webpack是如何处理es6转成es5的， 如何处理高级语法
+> es6转es5很常见， 都需要用到webpack去处理
+
+诞生了 babel-loader ， 需要结合 @babel/core(核心模块), @babel/preset-env ()
+
+- `yarn add babel-loader`
+- `yarn add @babel/core`
+- `yarn add @babel/preset-env`
+
+
+处理高级的class语法时，需要引入`@babel/plugin-proposal-class-properties`插件
+```js
+
+module.exports = {
+    rules: [
+        {
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],  // 关键处理高级语法
+                    plugins: [
+                        ['@babel/plugin-proposal-decorators', {"legacy": true }], // 处理装饰器语法
+                        ['@babel/plugin-proposal-class-properties']
+                    ], // 处理class高级语法
+                }
+            }
+        }
+    ]
+}
+```
+
+以上就是一些简单的处理es6语法
