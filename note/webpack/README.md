@@ -160,4 +160,86 @@ module.exports = {
 }
 ```
 
+### 考虑将css 抽离到单独的文件夹中
+>  默认情况下，css会打包js文件中，如何将css抽离到单独的文件中呢？
 
+诞生了一个插件叫 `mini-css-extract-plugin`
+- `yarn add mini-css-extract-plugin`
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// css默认不配置的化， 打包到main.css文件夹中
+module.exports = {
+    plugins: [
+        new MiniCssExtractPlugin({ // 可以配置的一些选项
+            filenane: 'main.[hash].css', // 自定义配置名字
+        })
+    ],
+}
+```
+
+### 如何给css自动加上浏览器前缀
+>  大多css有兼容浏览器兼容问题需要给css加上厂商前缀
+
+诞生了一个插件叫 `autoprefixer`
+- `yarn add autoprefixer`  安装
+- `yarn add postcss-loader` 在webpack 只需要结合这个loader 一起使用
+- 关键点： 还需要配合一个配置文件使用它
+
+配置文件的名字叫： `postcss-config.js`
+```js
+module.exports = {
+    plugins: [require('autoprefixer')]
+}
+```
+
+```js
+
+module.exports = {
+    mudule: {
+        rules: [
+             {
+                test: /\.less$/,
+                use: [{
+                    loader: MiniCssExtractPlugin.loader
+                }, {
+                    loader: 'css-loader',
+                }, {
+                    loader: 'less-loader'
+                },{
+                    loader: 'postcss-loader' // 需要在less, css 之前就处理它
+                }]
+            }
+        ]
+    }
+}
+```
+
+完成以上，就可以将所有需要配置厂商前缀的css就自动的加入
+
+### 如何将css一样的压缩化处理 ( 当然webpack4.0之后， 会通过mode模式来自动的优化一些东西)
+> 想将css 如同js一样压缩处理 ，那么会用到这个插件
+
+诞生了 ` optimize-css-assets-webpack-plugin.`
+- ` yarn add  optimize-css-assets-webpack-plugin` - css 压缩插件
+- ` yarn add terser-webpack-plugin` - js 压缩插件， 两者用法一致
+
+```js
+
+// 需要引入该插件
+// 当我们使用这个插件压缩css的时候，发现js为被压缩来
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const terserWebpackPlugin = require('terser-webpack-plugin')
+
+// 这个时候为们必须使用 terser-webpack-plugin
+
+module.exports = {
+    optimization: {
+        minimizer: [
+            new OptimizeCSSAssetsPlugin(),
+            new terserWebpackPlugin()
+        ]
+    }
+}
+
+```
