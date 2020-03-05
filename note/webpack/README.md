@@ -277,3 +277,26 @@ module.exports = {
 ```
 
 以上就是一些简单的处理es6语法
+
+### 使用webpack打包图片
+( 图片的打包很有问题 ～～～)
+> 引入图片的方式有三种
+- 在js创建的图片方式来引入
+- 在css 方式中引入
+- 在img的src方式引入
+
+完成以上， 会使用以下loader
+- `file-loader`
+- `url-loader`  可以配置图片引入时，图片以base64方式引入
+- `html-withimg-loader`  处理img方式打包的处理，找不到路径的问题
+
+```js
+module.exports = {
+    rules: [
+        {
+            test: /\.(jpg | png | jpg | gif)$/,
+            use: 'file-loader'
+        }
+    ]
+}
+```
