@@ -1,13 +1,14 @@
-function test() {
-    console.log(1)
+// console.log(global)
 
-    setTimeout(() => {
-        console.log(23)
-    }, 1000);
+// console.log(process.env)
+process.env.NODE_ENV = 'dev'
 
-    console.log(3)
-    process.nextTick(test())
+console.log(process.env.NODE_ENV)
+let url = ''
+if (!process.env.NODE_ENV) {
+    url = 'localhost:3000'
+} else {
+    url = 'yaogeng.top'
 }
 
-
-test()
+console.log(url)
