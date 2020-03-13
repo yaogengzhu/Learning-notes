@@ -675,3 +675,5 @@ Promise.prototype.then = function (onFulfilled, onReject) {
 module.exports = Promise
 
 ```
+
+## promise 
