@@ -1,4 +1,4 @@
-
+const Promise = require('./promise.js')
 
 const p = new Promise((reslove, reject) => {
     setTimeout(() => {
@@ -6,6 +6,11 @@ const p = new Promise((reslove, reject) => {
     }, 1000);
 })
 
-p.then( res => {
+// p.then()
+// const p1 = p.then()
+
+p.then( function(res) {
     console.log(res)
+}).catch( e => {
+    console.log(e)
 })
