@@ -1,31 +1,54 @@
-import React, { useState } from 'react'
-import styles from './index.less'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { useSerachBooks } from './serach'
 
 export default () => {
-  return (
-    <div>
-      <h1 className={styles.title}>Page index</h1>
-      <Counter>
-        {({ count, setCount }) => (
-          <div>
-            <h3>{ count }</h3>
-            <button onClick={() => setCount(count + 1)}>加1</button>
-          </div>
-        )}
-      </Counter>
-    </div>
-  )
-}
+	const [query, setQuery] = useState('')
+	const [pageNumber, setPageNumber] = useState(1)
 
-interface IProps {
-  children: (option: {
-    count: number,
-    setCount: (value: React.SetStateAction<number>) => void
-  }) => React.ReactNode
-}
-const Counter: React.FC<IProps> = (props) => {
-  const [count, setCount] = useState(0)
-  return(
-    <div>{ props.children({ count, setCount}) }</div>
-  )
+	const {loading, books, hasMore, error} = useSerachBooks(query, pageNumber)
+
+
+	const observer = useRef()
+
+	const lastBooksEelmentRef = useCallback((node) => {
+		if (loading) return
+		if (observer.current) {
+			observer.current.disconnect()
+		}
+		console.log('node', node)
+		observer.current = new IntersectionObserver((entries) => {
+			if (entries[0].isIntersecting && hasMore) {
+				console.log('visiable')
+				setPageNumber( (prveNumber) => prveNumber + 1)
+			}
+		})
+		if (node) observer.current.observe(node)
+		console.log(node, 'node')
+	}, [loading, hasMore])
+	
+	return (
+		<div>
+			<input
+				type='text'
+				value={query}
+				onChange={(e) => {
+				setQuery(e.target.value)
+					setPageNumber(1)
+				}}
+			>
+
+			</input>
+			{
+				books.map( (book: any, index: number) => {
+					if (books.length === index + 1) {
+						return <div key={ book } ref={ lastBooksEelmentRef }>{ book}</div>
+					} else {
+						return <div key={ book }>{ book}</div>
+					}
+				})
+			}
+			<div>{ loading && 'Loading...'}</div>
+			<div>{ error && 'Error'}</div>
+		</div>
+	)
 }
