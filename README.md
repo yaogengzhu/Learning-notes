@@ -16,13 +16,3 @@
 
 ### 第二阶段： webPack (2020-03)
 - [【入门2-1】webpack基础配置篇](https://github.com/yaogengzhu/Learning-notes/issues/6)
-
-
-***
-
-## 服务端基础：
-
-### 第-阶段： node基础
-
-
-## 发布订阅
