@@ -11,8 +11,20 @@ let obj = {
 }
 Object.defineProperty(obj, 'b' , {
     value: 2,
-    enumerable: true
+    enumerable: true,
+    writable: true
 })
 for( let i in obj) {
     console.log(i, '--')
 }
+
+Object.defineProperties(obj, {
+    a: {
+        value: 100
+    },
+    b: {
+        value: 30
+    }
+})
+
+console.log(obj)
