@@ -2,8 +2,10 @@
 const axios = require("axios")
 // import mainConfig from './serve-config/main'
 const mainConfig = require('./serve-config/main')
+const CancelToken = Axios.CancelToken
 // 使用自定义配置创建一个新的axios实例
 class Fetch{
+    cancelToken // 取消请求
     static getData(config) {
         // axios.create([config]) 创建一个axios实例
         const instance = axios.create(config)
@@ -23,7 +25,10 @@ class Fetch{
             headers: {
                 "Authentication": 'token-----',
             },
-            data: data.params
+            data: data.params,
+            CancelToken:  new CancelToken((c) => {
+                this.cancelServe = c
+            })
         }
         // 主配置
         return Fetch.getData(Object.assign({ }, mainConfig, serverConfig))
