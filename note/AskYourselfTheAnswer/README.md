@@ -1,4 +1,5 @@
 A: require和import的区别?   [参考](https://segmentfault.com/a/1190000021911869)
+
 Q: 可以看作为 commonjs 和 es6 的区别。 es6代码不能直接运行在node环境中，需要进行babel转换。
     - require方法用来加载模块。
     - Commonjs 规范规定，每个模块内部，module变量代表当前模块，这个变量是一个对象，exports即为它的属性，对外暴露的一个接口，加载模块其实就是加载module的属性。
