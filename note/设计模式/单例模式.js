@@ -41,3 +41,19 @@ const a = Singleton.getInstance()
 const b = Singleton.getInstance()
 
 console.log(a === b)
+
+const Singleton1 = (function () {
+    let instance = null
+    return function () {
+        if (instance) {
+            return instance
+        }
+
+        return instance = this
+    }
+})()
+
+const c = new Singleton1()
+const d = new Singleton1()
+
+console.log(c === d)
