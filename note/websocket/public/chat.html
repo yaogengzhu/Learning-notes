@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id='content1'>
+    <button onclick="send()">提交</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:8080/chat')
+        socket.on('connect', function () {
+            console.log('chta 服务连接成功')
+            socket.send('服务器您好') // ===> socket.emit('message'， '0000')
+        })
+
+        socket.on('message', function (message) {
+            console.log(message, '-----kfuueue')
+        })
+
+        function send() {
+            const ipt = document.querySelector('#content1')
+            socket.send(ipt.value)
+        }
+    </script>
+</body>
+
+</html>
