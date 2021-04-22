@@ -16,8 +16,8 @@ const useToggle = () => {
     }
 }
 
-const App =  () => {
-    const { flag, setFlag} = useToggle()
+const App = () => {
+    const { flag, setFlag } = useToggle()
 
     return (
         <div>
