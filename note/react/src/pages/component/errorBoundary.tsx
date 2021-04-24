@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component<IProps, IState> {
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.log()
+        console.log(errorInfo, 'errorInfo')
         this.setState({
             errorInfo
         })
@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component<IProps, IState> {
     render() {
         const { errorInfo } = this.state
         if (errorInfo) {
-            return <h1>组件内部错误 { errorInfo }</h1>
+            return <h1>组件内部错误{ errorInfo.componentStack }</h1>
         }
 
         return this.props.children

@@ -18,10 +18,6 @@ const Comp = () => {
 		setCount(count + 1)
 	}
 
-	if (count === 5) {
-		// Simulate a JS error
-		throw new Error('I crashed!')
-	}
 	return (
 		<h1 onClick={handleClick}>{count}</h1>
 	)

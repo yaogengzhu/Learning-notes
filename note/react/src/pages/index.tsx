@@ -1,56 +1,38 @@
-import React, { useRef } from 'react';
-import { useScroll } from 'ahooks';
+/*
+ * @Author: yaogeng.zhu 
+ * @Date: 2021-04-24 11:29:10 
+ * @Last Modified by: yaogeng.zhu
+ * @Last Modified time: 2021-04-24 12:06:04
+ */
 
-export default () => {
-  const ref = useRef(null);
+import React, { useState } from 'react'
+import ErrorBoundary from './component/errorBoundary'
 
-  const scroll = useScroll(ref, (val) => val.top > 100 && val.top < 200);
 
-  return (
-    <>
-      <div>{JSON.stringify(scroll)}</div>
-      <div
-        className={'main'}
-        style={{
-          height: '160px',
-          width: '160px',
-          border: 'solid 1px #000',
-          overflow: 'scroll',
-          whiteSpace: 'nowrap',
-          fontSize: '36px',
-        }}
-        ref={ref}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque, debitis ex
-          excepturi explicabo iste iure labore molestiae neque optio perspiciatis
-        </div>
-        <div>
-          Aspernatur cupiditate, deleniti id incidunt mollitia omnis! A aspernatur assumenda
-          consequuntur culpa cumque dignissimos enim eos, et fugit natus nemo nesciunt
-        </div>
-        <div>
-          Alias aut deserunt expedita, inventore maiores minima officia porro rem. Accusamus ducimus
-          magni modi mollitia nihil nisi provident
-        </div>
-        <div>
-          Alias aut autem consequuntur doloremque esse facilis id molestiae neque officia placeat,
-          quia quisquam repellendus reprehenderit.
-        </div>
-        <div>
-          Adipisci blanditiis facere nam perspiciatis sit soluta ullam! Architecto aut blanditiis,
-          consectetur corporis cum deserunt distinctio dolore eius est exercitationem
-        </div>
-        <div>Ab aliquid asperiores assumenda corporis cumque dolorum expedita</div>
-        <div>
-          Culpa cumque eveniet natus totam! Adipisci, animi at commodi delectus distinctio dolore
-          earum, eum expedita facilis
-        </div>
-        <div>
-          Quod sit, temporibus! Amet animi fugit officiis perspiciatis, quis unde. Cumque
-          dignissimos distinctio, dolor eaque est fugit nisi non pariatur porro possimus, quas quasi
-        </div>
-      </div>
-    </>
-  );
-};
+const Comp = () => {
+	const [count, setCount] = useState(0)
+
+	const handleClick = () => {
+		setCount(count + 1)
+	}
+
+	if (count === 5) {
+		throw new Error('I crashed!')
+	}
+	return (
+		<h1 onClick={handleClick}>{count}</h1>
+	)
+}
+const App = () => {
+
+	return (
+		<div>
+			<div>hello</div>
+			<ErrorBoundary>
+				<Comp />
+			</ErrorBoundary>
+		</div>
+	)
+}
+
+export default App
