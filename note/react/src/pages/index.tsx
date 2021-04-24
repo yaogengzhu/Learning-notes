@@ -1,37 +1,14 @@
 /*
  * @Author: yaogeng.zhu 
- * @Date: 2021-04-24 11:29:10 
+ * @Date: 2021-04-24 13:30:24 
  * @Last Modified by: yaogeng.zhu
- * @Last Modified time: 2021-04-24 12:06:04
+ * @Last Modified time: 2021-04-24 13:31:29
  */
+import React from 'react'
 
-import React, { useState } from 'react'
-import ErrorBoundary from './component/errorBoundary'
-
-
-const Comp = () => {
-	const [count, setCount] = useState(0)
-
-	const handleClick = () => {
-		setCount(count + 1)
-	}
-
-	if (count === 5) {
-		throw new Error('I crashed!')
-	}
+const App: React.FC = () => {
 	return (
-		<h1 onClick={handleClick}>{count}</h1>
-	)
-}
-const App = () => {
-
-	return (
-		<div>
-			<div>hello</div>
-			<ErrorBoundary>
-				<Comp />
-			</ErrorBoundary>
-		</div>
+		<div>测试</div>
 	)
 }
 
