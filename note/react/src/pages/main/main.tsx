@@ -7,6 +7,7 @@ export default () => {
             <Formik initialValues={{ firstName: 'zhuyaogeng' }} onSubmit={(data, {}) => {
 
             }}>
+                <input type="text"/>
             </Formik>
         </div>
     )
