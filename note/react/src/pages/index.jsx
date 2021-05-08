@@ -2,15 +2,22 @@
  * @Author: yaogeng.zhu 
  * @Date: 2021-04-24 13:30:24 
  * @Last Modified by: yaogeng.zhu
- * @Last Modified time: 2021-04-24 18:16:16
+ * @Last Modified time: 2021-05-08 13:13:54
  */
 import React, { useEffect } from 'react'
 import jsonp from 'jsonp'
+import Singer from '../utils'
 
 const App = () => {
 	useEffect(() => {
 		getData()
-	
+		const list = []
+		const singer = new Singer({name: 'zs', age: 12})
+		const singer1 = new Singer({name: 'ls', age: 32})
+		list.push(singer)
+		list.push(singer1)
+		const enw = list.map( item => item.name)
+		console.log( enw, '???')
 	}, [])
 
 	const  getData = async () => {

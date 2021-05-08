@@ -17,3 +17,9 @@ export function jsonp(url) {
         })
 }
 
+export default class Singer {
+    constructor({name, age}) {
+        this.name = name
+        this.age = age
+    }
+}

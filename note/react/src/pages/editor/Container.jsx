@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import { convertToObject } from 'typescript'
 import './container.less'
 
 const Box = ({ item, onChange, style }) => {
