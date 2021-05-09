@@ -2,8 +2,17 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import './container.less'
 
-const Box = ({ item, onChange, style }) => {
-
+/**
+ *  item
+ *  onChange
+ *  style
+ *  boxType 盒子类型 
+ * @param {*} param0 
+ * @returns 
+ */
+const Box = ({ item, onChange, style, boxType }) => {
+    useEffect(() => {
+    }, [])
     const [{ isDragging }, drag ] = useDrag(() => ({
         type: 'box',
         item: {item},
@@ -20,7 +29,11 @@ const Box = ({ item, onChange, style }) => {
     }))
     const color = isDragging ? 'red' : '#000';
     return (
-        <div ref={drag} className='box' style={{...style, color, cursor: 'pointer'}}>
+        <div
+            ref={drag}
+            className={['box', boxType === 'edit' ? 'box1' : ''].join(' ')}
+            style={{...style, color, cursor: 'move'}}
+        >
             { item.name }
         </div>
     )
@@ -60,6 +73,7 @@ const Target = ({ list }) => {
             {
                 material.map( item => (
                     <Box
+                        boxType="edit" 
                         item={item}
                         key={Math.random()}
                         style={{ flexShrink: 0}}

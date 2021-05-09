@@ -9,5 +9,6 @@ export default defineConfig({
     { path: '/main', component: '@/pages/main/main' },
     { path: '/drag', component: '@/pages/drag/index' },
     { path: '/editor', component: '@/pages/editor/index' },
+    { path: '/layout', component: '@/pages/layout/layout'}
   ],
 });

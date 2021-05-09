@@ -19,6 +19,7 @@
     }
 
     .box {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,7 +28,28 @@
         width: 200px;
         height: 200px;
         border: 1px dashed red;
-        cursor: pointer;
+        cursor: move;
+
+        &:hover {
+            border: 1px solid blue;
+        }
+    }
+
+    .box1 {
+        &:hover {
+            border: 1px solid blue;
+
+            &::after {
+                position: absolute;
+                content: '';
+                width: 20px;
+                height: 20px;
+                background-color: aqua;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+            }
+        }
     }
 
     .target {
@@ -47,7 +69,7 @@
             width: 80%;
             height: 200px;
             border: 1px solid #000;
-            cursor: pointer;
+            cursor: move;
         }
     }
 }
