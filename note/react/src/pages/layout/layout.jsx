@@ -1,4 +1,6 @@
-import GridLayout from 'react-grid-layout';
+import {WidthProvider, Responsive} from 'react-grid-layout';
+const ResponsiveReactGridLayout = WidthProvider(Responsive)
+// import GridLayout from 'react-grid-layout';
 import './layout.less'
 
 class MyFirstGrid extends React.Component {
@@ -11,18 +13,18 @@ class MyFirstGrid extends React.Component {
                 id: 1,
                 name: '图片',
                 grid: {
-                    i: '图片',
                     x: 0,
                     y: 0,
                     w: 12,
                     h: 1,
+                    i: Math.random() + '',
                 }
             },
             {
                 id: 2,
                 name: '卡片',
                 grid: {
-                    i: '卡片',
+                    i: Math.random() + '',
                     x: 1,
                     y: 0,
                     w: 12,
@@ -36,11 +38,12 @@ class MyFirstGrid extends React.Component {
                 name: '内容',
               
                 grid: {
-                    i: '内容',
                     x: 4,
                     y: 0,
                     w: 12,
                     h: 3,
+                    a: 'x',
+                    i: Math.random() + '',
                 }
             }
         ]
@@ -64,18 +67,10 @@ class MyFirstGrid extends React.Component {
         }
     }
 
-    onDrag(e) {
-        console.log(e)
-        return () => {
-            //
-        }
-    }
-
     render() {
       return (
-        <GridLayout
+        <ResponsiveReactGridLayout
             className="layout"
-            cols={12}
             rowHeight={30}
             width={this.vh}
             onDragStart={(e) => {
@@ -83,9 +78,6 @@ class MyFirstGrid extends React.Component {
             }}
             onDragStop={(e) => {
                 this.onDragStop(e)
-            }}
-            onDrag={(e) => {
-                this.onDrag(e)
             }}
         >
             {
@@ -98,7 +90,7 @@ class MyFirstGrid extends React.Component {
                 ))
             }
 
-        </GridLayout>
+        </ResponsiveReactGridLayout>
       )
     }
 }
