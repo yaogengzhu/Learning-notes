@@ -19,3 +19,10 @@ function getParamsByUrl(url) {
 
 const result = getParamsByUrl(url)
 console.log(result)
+
+function findNum(str) {
+    const result =  str.match(/(\d)+/g)
+    return result
+}
+console.log("========数字提取=========");
+console.log(findNum("asfs123fasde;lkjjiwdf2;kj;;l;io55fsa")); // [123,2,55]
