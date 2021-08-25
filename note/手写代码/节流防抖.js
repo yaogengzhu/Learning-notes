@@ -1,8 +1,3 @@
-# Problem: 防抖节流原理、区别以及应用，请用js实现。
-
-*[interview]: start
-
-```js
 function throttle() {
     let timer = null
     return function () {
@@ -27,6 +22,3 @@ function debounce(fn, delay) {
         }, delay)
     }
 }
-```
-
-*[interview]: end
