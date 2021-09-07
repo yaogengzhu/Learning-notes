@@ -50,11 +50,28 @@ class BinarySearchTree {
 
         // console.log(node);
     }
+    findTargetNode(node, targetSum) {
+        if (node === null) {
+            return false;
+        }
+        if (node.key === targetSum) {
+            return true;
+        }
+        if (node.key > targetSum) {
+            return false;
+        }
+        return (
+            this.findTargetNode(node.left, targetSum - node.key) ||
+            this.findTargetNode(node.right, targetSum - node.key)
+        );
+    }
+    findTargetNodeBySum(targetSum) {
+        return this.findTargetNode(this.root, targetSum);
+    }
 }
 
 const tree = new BinarySearchTree();
 
-tree.buildTree([1, 2, 5, 7, 9, 10, 43]);
-
+tree.buildTree([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]);
 tree.preOrderTraverse(tree.root);
-console.log(tree.root);
+console.log(tree.findTargetNodeBySum(22));

@@ -30,8 +30,6 @@ function BinarySearchTree() {
         } else {
             insertNode(root, newNode); // root不为空的话，需要判断左右节点值
         }
-
-        console.log(root, 'root');
     };
 
     function insertNode(node, newNode) {
@@ -153,7 +151,7 @@ function BinarySearchTree() {
     this.inOrderTraverse = function (node = root, type) {
         if (node !== null) {
             this.inOrderTraverse(node.left, 'left');
-            console.log(node.key, type, '中序排列');
+            // console.log(node.key, type, '中序排列');
             this.inOrderTraverse(node.right, 'right');
         }
     };
@@ -175,25 +173,51 @@ function BinarySearchTree() {
             console.log(node.key, type, '后序排列');
         }
     };
+
+    this.findTargetNodeBySum = function (targetSum) {
+        return findTargetNode(root, targetSum);
+    };
+
+    function findTargetNode(node, targetSum) {
+        console.log(node, 'xxx');
+        if (node === null) {
+            return false;
+        }
+        if (node.key === targetSum) {
+            return true;
+        }
+        if (node.key > targetSum) {
+            return false;
+        }
+        return (
+            findTargetNode(node.left, targetSum - node.key) ||
+            findTargetNode(node.right, targetSum - node.key)
+        );
+        // if (node === null) {
+        //     return false;
+        // }
+        // if (node.key < targetSum) {
+        //     if (node.key < (targetSum - node.key)) {
+        //         console.log(node.key, 'node.key')
+        //         return findTargetNode(node.left, targetSum - node.key);
+        //     } else if (node.key > (targetSum - node.key)) {
+        //         console.log(node.key, 'node.key')
+        //         return findTargetNode(node.right, targetSum - node.key);
+        //     }
+        // } else if (node.key > targetSum) {
+        //     return false;
+        // } else {
+        //     return true;
+        // }
+    }
 }
 
 const tree = new BinarySearchTree();
 
-tree.insert(10);
-tree.insert(12);
-tree.insert(8);
-tree.insert(9);
-tree.insert(30);
-tree.insert(1);
-tree.insert(13);
-console.log('====================================');
-console.log(tree.max());
-console.log(tree.min());
-console.log(tree.preOrderTraverse());
-console.log(tree.postOrderTraverse());
-console.log(tree.inOrderTraverse());
+[5, 4, 8, 11, 13, 14, 7, 2, 1]
+    .filter((item) => item !== null)
+    .forEach(function (item) {
+        tree.insert(item);
+    });
 
-// tree.remove(8);
-console.log(tree.min(), '???');
-console.log(tree.search(10));
-console.log('====================================');
+console.log(tree.findTargetNodeBySum(22));
