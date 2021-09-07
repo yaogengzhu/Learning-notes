@@ -44,11 +44,10 @@ class BinarySearchTree {
         if (node == null) {
             return;
         }
-       
-        this.preOrderTraverse(node.left, 'left');
-        
-        this.preOrderTraverse(node.right, 'right');
         console.log(node.key, type);
+        this.preOrderTraverse(node.left, 'left');
+        this.preOrderTraverse(node.right, 'right');
+
         // console.log(node);
     }
 }
