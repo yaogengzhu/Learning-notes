@@ -68,6 +68,15 @@ class BinarySearchTree {
     findTargetNodeBySum(targetSum) {
         return this.findTargetNode(this.root, targetSum);
     }
+
+    getTreeHeight(root) {
+        if (root === null) {
+            return 0;
+        }
+        let left = this.getTreeHeight(root.left);
+        let right = this.getTreeHeight(root.right);
+        return Math.max(left, right) + 1;
+    }
 }
 
 const tree = new BinarySearchTree();
@@ -75,3 +84,4 @@ const tree = new BinarySearchTree();
 tree.buildTree([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]);
 tree.preOrderTraverse(tree.root);
 console.log(tree.findTargetNodeBySum(22));
+console.log(tree.getTreeHeight(tree.root));
