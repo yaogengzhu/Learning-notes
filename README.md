@@ -15,3 +15,9 @@
 
 ### 第二阶段： webPack (2020-03)
 - [【入门2-1】webpack基础配置篇](https://github.com/yaogengzhu/Learning-notes/issues/6)
+- [【webpack配置React项目脚手架实战】](https://github.com/yaogengzhu/react-staging)
+
+
+## 前端日常记录
+- [项目代码更新提醒，上线后如何能及时提醒用户更新代码] (https://github.com/yaogengzhu/life-share/issues/139)
+- [本地如何配置https环境](https://github.com/yaogengzhu/life-share/issues/138)
