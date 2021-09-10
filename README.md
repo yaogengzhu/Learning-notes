@@ -5,6 +5,10 @@
 - [ 【踩坑笔记】react + vue + js 笔记](https://github.com/yaogengzhu/life-share/issues)
 - [ 【基础笔记】原生小程序相关](https://github.com/yaogengzhu/wechat/issues)
 
+### 文章指引
+- [项目代码更新提醒，上线后如何能及时提醒用户更新代码](https://github.com/yaogengzhu/life-share/issues/139)
+- [本地如何配置https环境](https://github.com/yaogengzhu/life-share/issues/138)
+
 ## 前端基础：
 ### 第 一 阶段：ES6 （2020-02）
 - [【入门1-1】认识es6中的const&let，模版字符串](https://github.com/yaogengzhu/Learning-notes/issues/1)
@@ -17,7 +21,3 @@
 - [【入门2-1】webpack基础配置篇](https://github.com/yaogengzhu/Learning-notes/issues/6)
 - [【webpack配置React项目脚手架实战】](https://github.com/yaogengzhu/react-staging)
 
-
-## 前端日常记录
-- [项目代码更新提醒，上线后如何能及时提醒用户更新代码] (https://github.com/yaogengzhu/life-share/issues/139)
-- [本地如何配置https环境](https://github.com/yaogengzhu/life-share/issues/138)
