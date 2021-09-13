@@ -1,15 +1,23 @@
-import React from 'react'
-import Tab from './component/Tab/Tab'
-import TabItem from './component/Tab/TabItem'
+import React, { useState } from 'react'
 
+
+const Spin = (props) => {
+	const [loading, setLoading] = useState(true)
+	return (
+		<div>
+			<div onClick={() => setLoading(true)}>{loading ? '进行中' : '加载ok'}</div>
+			{props.children && props.children(loading, setLoading)}
+		</div>
+	)
+}
 const App = () => {
 	return (
 		<div>
-			<Tab>
-				<TabItem name='姓名' label='姓名'>1</TabItem>
-				<TabItem name='年龄' label='年龄'>2</TabItem>
-				<TabItem name='学历' label='学历'>3</TabItem>
-			</Tab>
+			<Spin>
+				{(loading, setLoading) => <span onClick={() => {
+					setLoading(false);
+				}}>这是按钮</span>}
+			</Spin>
 		</div>
 	)
 }
