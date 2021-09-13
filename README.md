@@ -8,6 +8,7 @@
 ### 文章指引
 - [项目代码更新提醒，上线后如何能及时提醒用户更新代码](https://github.com/yaogengzhu/life-share/issues/139)
 - [本地如何配置https环境](https://github.com/yaogengzhu/life-share/issues/138)
+- [React组合模式](https://github.com/yaogengzhu/Learning-notes/issues/16)
 
 ## 前端基础：
 ### 第 一 阶段：ES6 （2020-02）
