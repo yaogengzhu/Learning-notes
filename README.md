@@ -25,3 +25,4 @@
 ### 第三阶段：手写代码
 - [es5实现深拷贝](https://github.com/yaogengzhu/Learning-notes/issues/17)
 - [se6实现深拷贝](https://github.com/yaogengzhu/Learning-notes/issues/18)
+- [instanceof实现](https://github.com/yaogengzhu/Learning-notes/issues/19)
