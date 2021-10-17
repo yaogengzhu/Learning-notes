@@ -104,3 +104,14 @@ obj2('ok');
 /***
  *  实际应用层： 数据上报层面, 可以通过扩展方法来改变函数的执行顺序， 返回一个新的方法
  */
+
+ @testable
+ class MyTestableClass {
+   // ...
+ }
+ 
+ function testable(target) {
+   target.isTestable = true;
+ }
+ 
+ MyTestableClass.isTestable // true
