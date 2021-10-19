@@ -664,4 +664,194 @@ sha256:9f308d3877e5a92270c0486ab9334525ae9de7f2a41fec06ac0ad8361a8f40d8
 
 
 
+### 容器数据卷
+
+容器数据共享，docker 产生的数据可以同步到本地。 
+
+容器持久化和同步操作，容器间可以数据共享
+
+#### 使用数据卷
+
+```bash
+# 使用命令挂载 - v
+docker run -it -v 主机目录：容器目录 -p 主机端口:容器端口
+
+
+[root@izu58hih8ihl4pz home]# docker run -d -it -v /home/ceshi:/home centos /bin/bash
+e7b1b8a50229e00342e16d6ccafdaa3d4d5acb2b12da3cea19c8f21c36639cf8
+
+docker inspect 容器ID 查看挂载
+```
+
+**优点：本地修改即可，容器会自动同步**
+
+
+
+### 测试mysql
+
+```bash
+docker pull mysql:5.7
+```
+
+需要先设置密码
+
+```bash
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+```
+
+运行时挂载
+
+```bash
+# -d 后台运行
+# -p 端口映射
+# -v 卷挂载
+# -e 环境配置
+# 
+docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+```
+
+启动成功后，可以本地测试访问
+
+- 主机端口和服务端口3306建立连接
+- 本地测试创建的数据，主机本地的文件会自动更新
+
+容器删除，挂载到本地的数据卷依然不会丢失。
+
+
+
+#### 具名和匿名挂载
+
+```bash
+# 匿名挂载
+# -v 容器路径
+
+docker -d -p --name nginx01  -v /etc/nginx nginx  # 匿名挂载
+docker -d -P --name nginx02 -v juming:/etc/nginx	# 具名挂载
+
+# 通过-v 卷名:容器内路径
+
+```
+
+##### 查看卷所有的情况
+
+```bash
+# 
+[root@izu58hih8ihl4pz data]# docker volume ls
+DRIVER    VOLUME NAME
+local     5c5deb937d05a7a8af7ab311e690b0b968a50b9d1d5b26b9590c19cadeca4029
+local     378e9faa3bea9bc76dd8af31e9cc664165945dfdafb198afc71765a54b44ea39
+local     e11abf52d708b0d4b72eff9f456adc07f5e4259432c9988b87b35f536672f0dc
+[root@izu58hih8ihl4pz data]# 
+
+# VOLUME NAME 一串码是匿名挂载
+
+# 查看卷
+docker volume inspect 378e9faa3bea9bc76dd8af31e9cc664165945dfdafb198afc71765a54b44ea39
+
+
+[root@izu58hih8ihl4pz data]# docker volume inspect 378e9faa3bea9bc76dd8af31e9cc664165945dfdafb198afc71765a54b44ea39
+[
+    {
+        "CreatedAt": "2021-10-17T16:45:27+08:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/378e9faa3bea9bc76dd8af31e9cc664165945dfdafb198afc71765a54b44ea39/_data",
+        "Name": "378e9faa3bea9bc76dd8af31e9cc664165945dfdafb198afc71765a54b44ea39",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+
+#### 如何区分具名和匿名挂载
+
+```bash
+# -v 容器路径
+# -v 卷名:容器路径	# 具名
+# -v /主机路径:容器路径
+```
+
+
+
+```bash
+# 通过ro rw 来控制权限
+# ro -readonly    只能通过宿主机来改变，容器无法修改
+# rw -readwrite 
+
+# 一旦设置容器权限，容器对我们挂载的内容就有了限定
+docker run -d -P --name nginx04 -v juming:/etc/mysql:ro nginx
+```
+
+
+
+###  初识Dockerfile
+
+```bash
+FROM centos
+VOLUME ['volume1', 'volume2']
+
+CMD echo '----end----'
+CMD /bin/bash
+
+# build
+docker build -f dockerfile -t /yaogengzhu/centos .
+
+```
+
+#### Dockerfile指令
+
+```bash
+# 指令
+FROM	     # 基础镜像
+MAINTAINER # 镜像维护者
+RUN				 # docker 镜像构建时候需要运行的命令
+ADD				 # 添加内容
+WORKDIR		 # 镜像的工作目录
+VOLUME		 # 挂载卷
+EXPOSE		 # 暴露端口配置
+CMD 			 # 指定容器需要运行的命令, 只有最后一个会生效，可被替代
+ENTRYPOINT # 指定这个容器启动后需要运行的命令，可追加命令
+ONBUILD		 # 当构建一个被继承，这个时候就会运行： ONBUILD 的指令，触发指令
+COPY			 # 将文件拷贝到镜像中
+ENV				 # 构建到时候设置环境变量
+```
+
+
+
+### -
+
+基础镜像scratch， 然后配置基础的软件和配置
+
+```bash
+# 创建一个自己的centos
+
+FROM centos
+MAINTAINER yaogengzhu<455947455@qq.com>
+
+ENV MYPATH /user/local
+WORKDIR $MYPATH
+
+RUN yum -y install vim
+RUN yum -y install net-tools
+EXPOSE 80
+
+CMD echo $MYPATH
+CMD echo "---构建完成--"
+CMD /bin/bash
+
+# 通过文件构建镜像
+docker build -f mydockerfile -t mycentos:0.1 .
+
+# c测试运行
+docker run -it mycentos:0.1
+# 对比镜像多了很多命令
+
+```
+
+可以列出变更历史
+
+```bash
+docker history 镜像id
+```
+
 
