@@ -7,10 +7,10 @@ function a() {
         console.log(i);
     }
 }
-a()
+a();
 {
     const arr = Array.from({ length: 10 }, (v, i) => i + 1);
-    console.log(arr)
+    console.log(arr);
 
     arr.forEach((v) => {
         if (v === 4) {
@@ -19,3 +19,15 @@ a()
         console.log(v);
     });
 }
+
+let json1 = {
+    title: 'hello',
+    author: ['yaogengzhu'],
+    year: 2021,
+    a: undefined,
+    date: new Date(),
+    regx: new RegExp(/^[1]/),
+    getName: function() {}
+};
+let jsonText = JSON.stringify(json1, '', 4);
+console.log(jsonText);
