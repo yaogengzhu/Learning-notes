@@ -133,3 +133,5 @@ console.log(stack.toString());
 // console.log(stack.size());
 
 ```
+
+用栈解决问题
