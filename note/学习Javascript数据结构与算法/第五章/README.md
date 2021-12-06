@@ -7,11 +7,11 @@
 使用class类创建一个队列
 ```js
 class Queue {
-    constructor(
+    constructor() {
         this.count = 0
         this.lowestCount = 0
         this.items = {}
-    )
+    }
 
     /**
      * 向队列尾部添加一个(或多个)新的项。
@@ -86,3 +86,7 @@ class Queue {
     }
 }
 ```
+
+
+## 双端队列数据结构
+双端队列(deque，或称 double-ended queue)是一种允许我们同时从前端和后端添加和移除元素的特殊队列。
