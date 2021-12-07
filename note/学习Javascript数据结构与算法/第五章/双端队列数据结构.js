@@ -4,13 +4,45 @@ class Deque {
         this.lowestCount = 0;
         this.items = {};
     }
-    isEmpty() {}
 
-    clear() {}
+    /***
+     * 判断对列是否为空
+     */
+    isEmpty() {
+        return this.count - this.lowestCount === 0;
+    }
 
-    size() {}
+    /**
+     * 返回队列包含的元素个数
+     */
+    size() {
+        return this.count - this.lowestCount;
+    }
 
-    toString() {}
+    /**
+     * 清空对列
+     *
+     * 要清空队列中的所有元素，我们可以调用 dequeue 方法直到它返回 undefined，也可以简 单地将队列中的属性值重设为和构造函数中的一样。
+     */
+    clear() {
+        this.items = {};
+        this.count = 0;
+        this.lowestCount = 0;
+    }
+
+    toString() {
+        if (this.isEmpty()) {
+            return '';
+        }
+
+        let objString = `${this.items[this.lowestCount]}`;
+
+        for (let i = this.lowestCount + 1; i < this.count; i++) {
+            objString += `${objString}, ${this.items[i]}`;
+        }
+
+        return objString;
+    }
 
     /**
      * 该方法在双端队列前端添加新的元素。
