@@ -48,6 +48,8 @@ class Set {
 const set = new Set()
 set.add(1)
 set.add(2)
+set.add(4)
+console.log(set.values())
 
 // 额外的知识点补充 获取对象的长度
 function getObjectSize(obj) {
