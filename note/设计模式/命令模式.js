@@ -55,3 +55,11 @@ const delSubMenuCommand = new DelSubMenuCommand(SubMenu)
 setCommad(button1, refreshMenuBarCommand)
 setCommad(button2, addSubMenuCommand)
 setCommad(button3, delSubMenuCommand)
+
+// javascript
+
+const bindClick = function (button, fn) {
+    button.click = fn
+}
+
+bindClick(button1, MenuBar.refresh)
