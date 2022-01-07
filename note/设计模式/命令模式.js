@@ -63,3 +63,57 @@ const bindClick = function (button, fn) {
 }
 
 bindClick(button1, MenuBar.refresh)
+
+// 游戏
+const Ryu = {
+    attack: function () {
+        console.log('攻击')
+    },
+
+    defense: function () {
+        console.log('防御')
+    },
+
+    jump: function () {
+        console.log('跳跃')
+    },
+
+    crouch: function () {
+        console.log('蹲下')
+    },
+}
+
+// 创建命令
+const makeCommand = function (recevicer, state) {
+    return function () {
+        recevicer[state]()
+    }
+}
+
+const commands = {
+    119: 'jump',
+    115: 'crouch',
+    97: ' defense',
+    100: 'attach',
+}
+
+const commandStack = [] // 保存命令栈
+
+document.onKeypress = function (ev) {
+    const keyCode = ev.keyCode,
+        command = makeCommand(Ryu, commands[keyCode])
+
+    if (command) {
+        command()
+        commandStack.push(command) // 将刚执行过的命令推到栈里
+    }
+}
+
+// 点击播放录像
+document.getElementById('replay').onclick = function () {
+    let command
+    while (command === commandStack.shift()) {
+        // 从堆栈里一次取出命令并执行
+        command()
+    }
+}
