@@ -117,3 +117,48 @@ document.getElementById('replay').onclick = function () {
         command()
     }
 }
+
+/**
+ * 宏命令
+ *
+ * 宏命令是一组命令的集合，通过执行宏命令，可以支持一次执行一批命令
+ */
+
+// 依次创建好各种command
+
+const closeDoorCommand = {
+    execute: function () {
+        console.log('关门')
+    },
+}
+
+const openPcCommand = {
+    execute: function () {
+        console.log('开电脑')
+    },
+}
+
+const openQQCommand = {
+    execute: function () {
+        console.log('登QQ')
+    },
+}
+
+const MaroCommand = function () {
+    return {
+        commandList: [],
+        add: function (command) {
+            this.commandList.push(command)
+        },
+        execute: function () {
+            this.commandList.forEach((fn) => fn.execute())
+        },
+    }
+}
+
+const macroCommand = new MaroCommand()
+
+macroCommand.add(closeDoorCommand)
+macroCommand.add(openPcCommand)
+macroCommand.add(openQQCommand)
+macroCommand.execute()
