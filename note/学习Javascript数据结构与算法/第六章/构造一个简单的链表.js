@@ -87,11 +87,30 @@ LinkList.prototype.insert = function (data, position) {
     return true
 }
 
+/**
+ * 获取链表data
+ * @param {*} position
+ * @returns
+ */
+LinkList.prototype.get = function (position) {
+    // 越界判断
+    if (position < 0 || position >= this.length) return null
+
+    // 获取相应的data
+    let currentNode = this.head
+    let index = 0
+    while (index++ < position) {
+        currentNode = currentNode.next
+    }
+    return currentNode.data
+}
+
 const list = new LinkList()
 list.append(1)
 list.append(1)
 list.append(23)
 
 list.insert(100, 1)
+console.log(list.get(3));
 
-console.log(list.toString())
+// console.log(list.toString())
