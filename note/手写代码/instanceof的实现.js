@@ -29,5 +29,5 @@ function myInstanceof(origin, target) {
     return false;
 }
 
-console.log(myInstanceof(null, Object))
-console.log(typeof null === 'object' ) // false
+console.log(myInstanceof(null, Object)) // false
+console.log(typeof null === 'object' ) // true
