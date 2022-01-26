@@ -1,19 +1,32 @@
 /**
  * 双向链表
  */
+
+function Node(data) {
+    this.data = data
+    this.prev = null
+    this.next = null
+}
 function DobulyLinkList() {
-    function Node(data) {
-        this.data = data
-        thisl.prev = null
-        this.next = null
-    }
     this.head = null
     this.tail = null
     this.length = 0
 }
 
 // 尾部添加一个新的项目
-DobulyLinkList.prototype.append = function () {}
+DobulyLinkList.prototype.append = function (data) {
+    const newNode = new Node(data)
+    if (this.length === 0) {
+        this.head = newNode
+        this.tail = newNode
+    } else {
+        newNode.prev = this.tail
+        this.tail.next = newNode
+        this.tail = newNode
+    }
+
+    this.length += 1
+}
 
 // 向列表指定位置添加一个新的项
 DobulyLinkList.prototype.insert = function (position, element) {}
@@ -39,3 +52,10 @@ DobulyLinkList.prototype.toString = function () {}
 DobulyLinkList.prototype.forwardString = function () {}
 
 DobulyLinkList.prototype.backwordString = function () {}
+
+const list = new DobulyLinkList()
+list.append('1')
+list.append('2')
+list.append('3')
+
+console.log(list)
