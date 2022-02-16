@@ -5,33 +5,43 @@
 -   W3C 标准盒模型
     包含 margin border padding content (不包含其他)
 
-
 **2.CSS 所有选择器及其优先级、使用场景，哪些可以继承，如何运用 at 规则**
 [参考文章](https://www.jianshu.com/p/cd89de075079)
 
-- 通用选择器*
-- 标签选择器
-- 类选择器
-- ID选择器
-- 伪类选择器
-- 属性、兄弟、后代选择器
-... 
+-   通用选择器\*
+-   标签选择器
+-   类选择器
+-   ID 选择器
+-   伪类选择器
+-   属性、兄弟、后代选择器
+    ...
 
 优先级
-- import 
-- 内联
-- id 选择器
-- 类、伪类、属性选择器
-- 标签选择器、伪元素选择器
-- 通配符选择器
-- 浏览器自定义
 
-
-
-
-
+-   import
+-   内联
+-   id 选择器
+-   类、伪类、属性选择器
+-   标签选择器、伪元素选择器
+-   通配符选择器
+-   浏览器自定义
 
 **3.CSS 伪类和伪元素有哪些，它们的区别和实际应用**
+
+[参考地址](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#%E7%94%9F%E6%88%90%E5%B8%A6%E6%9C%89before%E5%92%8Cafter%E7%9A%84%E5%86%85%E5%AE%B9)
+
+伪类是伪元素的一种。伪类是开头为冒号:的关键字
+如： :first-child (用于 class 选择)
+:last-child
+用户行为伪类
+:hover (鼠标指针行为)
+:focus (键盘控制)
+
+伪元素开头为双冒号::
+
+-   伪类和伪元素可以结合使用
+
+生成带有::before 和 ::after 的内容 与 content 属性一同使用，使用 css 将内容插入文档中。
 
 **4.HTML 文档流的排版规则，CSS 几种定位的规则、定位参照物、对文档流的影响，如何选择最好的定位方式，雪碧图实现原理**
 
