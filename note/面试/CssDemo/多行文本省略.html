@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多行文本省略</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* css3属性 */
+        display: -webkit-box;
+        /* 容器中的内容限定指定的行数 */
+        -webkit-line-clamp: 2;
+        /* 水平还是垂直布局内容 */
+        -webkit-box-orient: vertical;
+    }
+</style>
+
+<body>
+    <div class="box">
+        在制作自适应广告或动态广告时，文字调整选项非常有用，因为在此类广告中，文字长度或文本框大小可能会变，文字也可能会因此而溢出文本框
+    </div>
+</body>
+
+</html>
