@@ -49,6 +49,32 @@
 
 **6.BFC 实现原理，可以解决的问题，如何创建 BFC**
 
+[参考文章](https://zhuanlan.zhihu.com/p/25321647)
+
+定位方案：
+- 普通流
+- 定位
+- float浮动
+
+BFC(块级格式化上下文)
+
+BFC 可以看成一个独立的容器，容器里的元素不会在布局上影响到外面的容器。
+
+如何创建BFC
+
+浮动元素： 除了none以外所有的值
+绝对定位元素： position(absolute fixed)
+display: inline-block、flex、table-cells
+overflow: 除了visible以外的值（hideen、auto、scroll)
+body根元素
+
+特性：
+- 同一个BFC 外边距会发生重叠（使用两个BFC容器解决）
+- BFC可以包含浮动元素 （清除浮动）
+- BFC可以阻止元素被浮动覆盖
+
+
+
 **7.可使用 CSS 函数复用代码，实现特殊效果**
 
 **8.PostCSS、Sass、Less 的异同，以及使用配置，至少掌握一种**
