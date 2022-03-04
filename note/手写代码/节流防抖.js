@@ -33,7 +33,7 @@ function debounce(fn, delay) {
     let timer = null;
     return function () {
         if (timer) {
-            clearInterval(timer);
+            clearTimeout(timer);
         }
         const args = Array.prototype.slice.call(arguments);
         timer = setTimeout(() => {
