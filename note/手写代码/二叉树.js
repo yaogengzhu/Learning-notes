@@ -15,22 +15,16 @@ class BinaryTree {
         const nodeList = [];
         const len = list.length;
         for (let i = 0; i < len; i++) {
-            if (list[i] !== null) {
-                nodeList[i] = new this.Node(list[i]);
-            } else {
-                nodeList[i] = undefined;
-            }
+            nodeList[i] = new this.Node(list[i]);
         }
         this.root = nodeList[0];  // 取出第一个节点作为根节点
          // 分配节点
         for (let i = 0; i < len / 2; i++) {
-            if (nodeList[i]) {
-                if (2 * i + 1 < len && nodeList[2 * i + 1]) {
-                    nodeList[i].left = nodeList[2 * i + 1];
-                }
-                if (2 * i + 2 < len && nodeList[2 * i + 2]) {
-                    nodeList[i].right = nodeList[2 * i + 2];
-                }
+            if (2 * i + 1 < len && nodeList[2 * i + 1]) {
+                nodeList[i].left = nodeList[2 * i + 1];
+            }
+            if (2 * i + 2 < len && nodeList[2 * i + 2]) {
+                nodeList[i].right = nodeList[2 * i + 2];
             }
         }
     }
