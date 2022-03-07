@@ -1,34 +1,30 @@
 class BinaryTree {
     constructor() {
         this.root = null;
+        // 节点构造函数
         this.Node = function Node(key) {
             this.key = key;
             this.left = null;
             this.right = null;
         };
     }
-
+    // 生成二叉树
     buildTree(list) {
         list = list.filter((item) => item !== null && item !== undefined);
+        // 将每个数据变成节点，放入数组中
         const nodeList = [];
         const len = list.length;
         for (let i = 0; i < len; i++) {
-            if (list[i] !== null) {
-                nodeList[i] = new this.Node(list[i]);
-            } else {
-                nodeList[i] = undefined;
-            }
+            nodeList[i] = new this.Node(list[i]);
         }
-        this.root = nodeList[0];
-
+        this.root = nodeList[0];  // 取出第一个节点作为根节点
+         // 分配节点
         for (let i = 0; i < len / 2; i++) {
-            if (nodeList[i]) {
-                if (2 * i + 1 < len && nodeList[2 * i + 1]) {
-                    nodeList[i].left = nodeList[2 * i + 1];
-                }
-                if (2 * i + 2 < len && nodeList[2 * i + 2]) {
-                    nodeList[i].right = nodeList[2 * i + 2];
-                }
+            if (2 * i + 1 < len && nodeList[2 * i + 1]) {
+                nodeList[i].left = nodeList[2 * i + 1];
+            }
+            if (2 * i + 2 < len && nodeList[2 * i + 2]) {
+                nodeList[i].right = nodeList[2 * i + 2];
             }
         }
     }
