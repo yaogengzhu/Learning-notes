@@ -1,5 +1,5 @@
 function deepClone1(origin) {
-    if (typeof origin !== 'object' || typeof origin == undefined) {
+    if (typeof origin !== 'object' || origin == null) {
         return origin;
     }
     if (origin instanceof Date) {
