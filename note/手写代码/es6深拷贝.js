@@ -10,7 +10,8 @@ function deepClone1(origin) {
     }
     let target = new origin.constructor();
     for (let k in origin) {
-        if (origin.hasOwnProperty(k)) {
+        // 优化origin.hasOwnProperty(k)
+        if (Object.prototype.hasOwnProperty.call(origin, k)) {
             target[k] = deepClone(origin[k]);
         }
     }
