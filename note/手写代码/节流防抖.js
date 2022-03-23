@@ -41,3 +41,43 @@ function debounce(fn, delay) {
         }, delay);
     };
 }
+
+/* 实现一个类似于`Function.prototype.call`的方法，可以改变函数的上下文。 */
+Function.prototype.myCall = function(context) {
+    context = context ? context : window
+    const args = [...arguments].slice(1) // 取出剩余的参数
+    const key = Symbol()
+    context[key] = this // 重置上下文
+    const result = context[key](...args) // 执行函数
+    delete context[key]
+    return result
+}
+
+
+/* 实现一个类似于`Function.prototype.call`的方法，可以改变函数的上下文。 */
+Function.prototype.myApply = function(context) {
+    context = context ? context : window
+    const args = [...arguments].slice(1) // 取出剩余的参数
+    const key = Symbol()
+    context[key] = this // 重置上下文
+
+    if (!args) {
+        const result = context[key](...args) // 执行函数
+        delete context[key]
+        return result
+    }
+    const result = context[key](...args) // 执行函数
+    delete context[key]
+    return result
+}
+
+
+
+/* It's creating a new function that has the same properties as the original function, but with the
+context of the new context. */
+Function.prototype.myBind = function(context) {
+    context = context ? context : window
+    const key = Symbol()
+    context[key] = this // 重置上下文
+    return context[key]
+}
