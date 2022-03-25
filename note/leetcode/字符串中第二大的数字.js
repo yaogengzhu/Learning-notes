@@ -18,3 +18,18 @@ const secondHighest = function (s) {
     return Math.max.apply(null, newArr)
 }
 
+/**
+ * 其他解题
+ */
+
+const secondHighest1 = function (s) {
+    let max = -1
+    let sec = -1
+    for (let b of s) {
+        if (b >= 0 && b <= 9) {
+            if (b > max) (sec = max), (max = b)
+            if (b < max && b > sec) sec = b
+        }
+    }
+    return max === sec ? -1 : sec
+}
