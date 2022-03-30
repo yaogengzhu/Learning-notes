@@ -41,3 +41,38 @@ xhr.send(null)
 //     console.log(xhr.responseText)
 // }
 ```
+
+POST 请求
+
+利用 XHR 模仿表单提交：首先将 Content-Type: application/x-www-form-urlencoded (表单提交时的内容)
+
+## XMLHttpRequest 2 级
+
+**FormData**
+
+FormData 类型，FormData 为序列化表单以及创建与表单格式相同的数据（用于通过 XHR 传输）提供了便利
+
+**超时设定**
+
+IE8 为 XHR 对象添加了一个 timeout 属性，表示在请求在等待响应多少毫秒后就会终止。
+xrh.timeout = 1000; // 仅适用 ie8
+
+**进度事件**
+
+Progress Events 规范是 W3C 的一个工作草案，定义了与客户端服务器通信相关的事件。
+
+-   loadStart
+-   progress (多次触发)
+-   error
+-   abort
+-   load (接收到完整数据时触发)
+-   loaded
+
+**load 事件**
+
+**跨资源共享**
+
+CORS（Cross-Origin Resource Sharing, 跨资源共享)
+
+-   对应出现的
+    CSRF (跨站点请求伪造) XSS(跨脚本攻击)
