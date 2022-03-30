@@ -40,6 +40,10 @@
          *  send 接收一个参数，作为请求主体的参数
          * 
         */
+
+        // 可以设置请求信息, 必须在xhr.open() 之后， xhr.send() 之前
+        xhr.setRequestHeader('token', 'test')
+
         xhr.send(null)
         // console.log(xhr.status)
         // if ((xhr.status >= 200)) {
