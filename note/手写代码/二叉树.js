@@ -45,12 +45,35 @@ class BinaryTree {
         )
     }
 
-    preOrder(root) {
+    /**
+     *  左->根->右
+     * @param {*} root
+     * @param {*} arr
+     * @returns
+     */
+    preOrder(root, arr = []) {
         if (root !== null) {
+            /* 将根节点的值放入数组中 */
             console.log(root.key)
-            this.preOrder(root.left)
-            this.preOrder(root.right)
+            arr.push(root.key)
+            this.preOrder(root.left, arr)
+            this.preOrder(root.right, arr)
         }
+        return arr
+    }
+
+    newPreOrder(root) {
+        if (!root) return []
+        const arr = []
+        const stack = [root]
+        while (stack.length) {
+            // 取出第一个
+            const currentNode = stack.pop()
+            arr.push(currentNode.key)
+            currentNode.right && stack.push(currentNode.right)
+            currentNode.left && stack.push(currentNode.left)
+        }
+        return arr
     }
 
     centerOder(root) {
@@ -60,6 +83,7 @@ class BinaryTree {
             this.preOrder(root.right)
         }
     }
+
     lastOrder(root) {
         if (root !== null) {
             this.preOrder(root.left)
@@ -70,12 +94,15 @@ class BinaryTree {
 }
 
 const tree = new BinaryTree()
-tree.buildTree([null, 1, 2, 4, 6, 8, 10, 133])
-// console.log(tree.root);
+tree.buildTree([null, 1, 2, 3, 4, 5, 6, 7])
+console.log(tree.root)
 const result = tree.findTargetNode(tree.root, 10)
 console.log('====================================')
 console.log(result)
 console.log('====================================')
-tree.preOrder(tree.root)
-tree.centerOder(tree.root)
-tree.lastOrder(tree.root)
+const test1 = tree.preOrder(tree.root)
+console.log(test1)
+// tree.centerOder(tree.root)
+// tree.lastOrder(tree.root)
+const result1 = tree.newPreOrder(tree.root)
+console.log(result1)
