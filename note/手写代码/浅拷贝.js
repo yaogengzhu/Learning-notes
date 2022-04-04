@@ -4,6 +4,7 @@ function shallowCopy(obj) {
     for (let key in obj) {
         console.log(key, obj[key]);
         // 定义：判断该对象是否有某个指定的自定义属性，不包含继承原型链的属性
+        // 🔨
         if (obj.hasOwnProperty(key)) {
             newObj[key] = obj[key]
         }
