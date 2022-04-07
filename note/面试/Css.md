@@ -3,7 +3,7 @@
 -   IE 盒模型
     包含 margin border padding content (包含 border 和 padding)
 -   W3C 标准盒模型
-    包含 margin border padding content (不包含其他)
+    包含 margin border padding content (不包含其他) content 等于 宽度
 
 **2.CSS 所有选择器及其优先级、使用场景，哪些可以继承，如何运用 at 规则**
 [参考文章](https://www.jianshu.com/p/cd89de075079)
