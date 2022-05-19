@@ -189,3 +189,24 @@ function toTree(list, id) {
 }
 
 console.log(toTree(data, 0))
+
+// 逆向
+let list = []
+function toList(tree, list = []) {
+  tree.forEach((item) => {
+    list.push(item)
+    toList(item.children, list)
+  })
+}
+
+function toListInner(tree) {
+  let result = []
+
+  tree.forEach((item) => {
+    children = toListInner(item.children)
+    // console.log(children)
+    children.forEach((t) => result.push(t))
+    result.push(item)
+  })
+  return result
+}
