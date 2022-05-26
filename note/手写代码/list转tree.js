@@ -25,3 +25,10 @@ function listTransfromToTree(list) {
     }
     return tree
 }
+
+function toList(tree, list = []) {
+    tree.forEach((item) => {
+        list.push(item)
+        toList(item.children, list)
+    })
+}
