@@ -1,9 +1,3 @@
-export default class Singer {
-    constructor({name, age}) {
-        this.name = name
-        this.age = age
-    }
-}
 function jsonp(url, opts) {
     // 实现Promise化
     return new Promise((resolve, reject) => {
