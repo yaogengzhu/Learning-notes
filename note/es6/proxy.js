@@ -40,3 +40,5 @@ const proxy = new Proxy(person, hanlder)
 console.log(proxy.age)
 console.log(proxy.name)
 console.log(proxy.test)
+
+// 可以用来处理 data.c || '0'
