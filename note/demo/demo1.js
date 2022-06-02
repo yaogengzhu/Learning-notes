@@ -1,44 +1,29 @@
-function start() {
-    console.log('开始')
+const arr = [1, 2, 3, 4, 5]
+const target = 5
+
+function binarySearch(arr, target) {
+  let left = 0
+  let right = arr.length - 1
+  let res = -1
+
+  while (left <= right) {
+    console.log(left, 'left')
+    console.log(right, 'right')
+    if (arr[0] === target) return (res = 0)
+    let mind = Math.floor(left + right - left / 2)
+
+    if (arr[mind] === target && arr[mind] > arr[mind - 1]) {
+      res = mind
+      break
+    } else if (arr[mind] < target) {
+      left = mind + 1
+    } else {
+      right = mind - 1
+    }
+  }
+
+  return res
 }
 
-function end() {
-    console.log('结束')
-}
-
-// start()
-
-// end()
-
-function Action() {
-
-}
-
-// Action.prototype.start = () => {
-//     console.log('开始----')
-// }
-
-// Action.prototype.end = () => {
-//     console.log("结束----")
-// }
-// const action = new Action()
-
-// Action.prototype = {
-//     start: function () {
-//         console.log("开始----")
-//     },
-//     end: function () {
-//         console.log('结束###')
-//     }
-// }
-// const action = new Action()
-
-// action.start()
-// action.end()
-
-
-// 函数是一等公民
-
-(function (a, b) {
-    console.log(a * b)
-})(10, 20)
+const result = binarySearch(arr, target)
+console.log(result, 'result')
