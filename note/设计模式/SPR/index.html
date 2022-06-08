@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <script>
-            function appDiv(data) {
-                for (var i = 0; i < data.length; i++) {
-                    const ele = document.createElement('div')
-                    ele.innerHTML = data[i]
-                    document.body.appendChild(ele)
-                }
-            }
 
-            appDiv([1, 2, 3, 4])
-        </script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        let createLoginLayer = (function () {
+            let div
+            return function () {
+                if (!div) {
+                    div = document.createElement('div')
+                    div.style = 'width: 100px;height:100px;background: red;display:none'
+                    document.body.appendChild(div)
+                }
+                return div
+            }
+        })()
+        const btn = document.getElementById('btn')
+
+        btn.onclick = function() {
+            const div = createLoginLayer()
+            console.log(div)
+            div.style.display = 'block'
+        }
+    </script>
+</body>
+
 </html>

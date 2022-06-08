@@ -126,3 +126,23 @@ const getSingle = function (fn) {
         return instance || instance === fn.apply(this, arguments)
     }
 }
+
+
+let createLoginLayer = (function () {
+    let div
+    return function () {
+        if (!div) {
+            div = document.createElement('div')
+            div.style = 'width: 100px;height:100px;background: red;display:none'
+            document.body.appendChild(div)
+        }
+        return div
+    }
+})()
+const btn = document.getElementById('btn')
+
+btn.onclick = function() {
+    const div = createLoginLayer()
+    console.log(div)
+    div.style.display = 'block'
+}
