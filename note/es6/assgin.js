@@ -43,7 +43,28 @@ function clone1(origin) {
 
 Object.assign({}, { a: 1 }, { c: 2 })
 
-
 // 可以对数组进行合并
 
 Object.assign([1, 2, 3], [1, 4]) // [1, 4, 3]
+
+// Object.fromEntries() -->
+
+const dog = {
+  name: 'xiao',
+  color: 'black',
+  age: 4,
+}
+
+console.log(Object.entries(dog))
+
+const entries = new Map([
+  ['foo', 'bar'],
+  ['baz', 42],
+])
+const result1 = Object.fromEntries(entries)
+console.log(result1)
+
+// 将查询字符串--> 转成对象
+
+const params = Object.fromEntries(new URLSearchParams('foo=bar&baz=qux'))
+console.log(params)
