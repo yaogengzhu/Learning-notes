@@ -32,3 +32,26 @@ function toList(tree, list = []) {
         toList(item.children, list)
     })
 }
+
+
+const listToTree = (list) => {
+    const newList = [];
+    const newObjTree = list.reduce((pre, cur) => {
+      let newKey = cur.cityCode;
+      if (!pre[newKey]) {
+        pre[newKey] = [];
+      }
+      pre[newKey].push(cur);
+      return pre;
+    });
+    // eslint-disable-next-line guard-for-in
+    for (let k in newObjTree) {
+      newList.push({
+        ...arr1.find((item) => item.cityCode === k),
+        children: newObjTree[k],
+      });
+    }
+    return newList;
+  };
+  const result = listToTree(arr1);
+  console.log(result);
