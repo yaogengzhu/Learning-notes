@@ -1,3 +1,8 @@
+/***
+ *  命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。
+ *  命令模式也是最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收者是谁，也不知道请求的操作是是什么。
+ */
+
 const setCommad = function (button, command) {
     button.click = function () {
         command.execute()
