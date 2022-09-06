@@ -1,7 +1,14 @@
+/**
+ *  发布订阅模式， 可以先发布后订阅吗？
+ *
+ *
+ */
+
 const Event = (function () {
   let clientList = {},
     listen,
     trigger,
+    offline = {},
     remove;
 
   listen = function (key, fn) {
@@ -9,12 +16,24 @@ const Event = (function () {
       clientList[key] = [];
     }
     clientList[key].push(fn);
+
+    const fns = offline[key];
+    if (!fns) {
+      return false;
+    }
+    for (let i = fns.length - 1; (fn1 = fns[i--]); ) {
+      fn.apply(this, fn1);
+    }
   };
 
   trigger = function () {
     let key = Array.prototype.shift.call(arguments);
     fns = clientList[key];
     if (!fns || fns.length === 0) {
+      if (!offline[key]) {
+        offline[key] = [];
+      }
+      offline[key].push(arguments);
       return false;
     }
     for (let i = 0, fn; (fn = fns[i++]); ) {
@@ -46,8 +65,8 @@ const Event = (function () {
   };
 })();
 
+Event.trigger("key", "avd");
+Event.trigger("key", "avd111");
 Event.listen("key", function (a) {
   console.log("得到啦什么", a);
 });
-
-Event.trigger("key", "avd");
