@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">撤回</button>
+    <script>
+      /**   /**
+       * 宏命令是一组命令的集合，通过执行宏命令的方式，可以一次执行一批命令。
+       *
+       *
+       */
+      const closeCommand = {
+        execute: function () {
+          console.log("close");
+        },
+      };
+
+      const openPcCommand = {
+        execute: function () {
+          console.log(1);
+        },
+      };
+
+      const openQQCommand = {
+        execute: function () {
+          console.log(2);
+        },
+      };
+
+      const MacroCommand = function () {
+        return {
+          commonList: [],
+          historyList: [],
+          add: function (command) {
+            this.commonList.push(command);
+          },
+          execute: function () {
+            for (let i = 0, command; (command = this.commonList[i++]); ) {
+              command.execute();
+              this.historyList.push(command.execute);
+            }
+          },
+          undo: function () {
+            let command = null;
+            while ((command = this.historyList.pop())) {
+              command();
+            }
+          },
+        };
+      };
+
+      const macroCommand = new MacroCommand();
+      macroCommand.add(closeCommand);
+      macroCommand.add(openPcCommand);
+      macroCommand.add(openQQCommand);
+
+      macroCommand.execute();
+
+      const btn = document.getElementById("btn");
+
+      btn.onclick = function () {
+        macroCommand.undo();
+      };
+    </script>
+  </body>
+</html>
