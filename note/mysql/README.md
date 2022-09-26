@@ -33,3 +33,113 @@ ORM 思想（Object Relationl Mapping )
 - 数据库、表名、表别名、字段名等小写。
 - SQL关键字、函数名、绑定变量等大写。
 
+### 导入现有的数据表、表中的一条数据
+方式1: source 文件名的全路径
+方式2: 借助图形化界面工具导入数据
+
+
+### DDL
+
+show tables;
+
+DESC 表明 （表结构）
+
+show create table 表名;
+
+
+表结构的创建
+
+```SQL
+
+create table 表明（
+   字段1 字段1类型[comment 字段1注释],
+   ...
+   字段n 字段n类型[comment 字段n注释],
+)[comment 表注释];
+```
+
+
+### SQL DDL  数据类型
+
+数值类型
+
+- TINYINT
+- SAMLLINT
+- MEDIUMINIT
+- INT 或 INTEGER
+- BINGINT
+- FLOAT
+- DOUBLE
+- DECIMAL
+
+
+- age TINYINT UNSINGNED 无符号 （大于0）
+- score double(4,1) # 表示分数 84.2
+
+字符串类型
+- CHAR  (定长)
+- VARCHAR 变长字符串
+- TINYBLOB （不超过255个字符的二进制）
+- BLOB
+- TEXT
+- MENDIUMBLOB
+- LONGBLOB
+- LONGTEXT  极大文本数据
+
+使用
+char(10) 最多存储10个字符
+varchar(10)  两者差异 char 性能好、varchar 性能较差。
+
+用户名 username varchar(50)
+性别 gender char(1)
+
+日期时间类型
+- DATE  （YYYY-MM-DD）
+- TIME   (HH:MM:SS)
+- YEAR   (YYYY)
+- DATETIME  (YYYY-MM-DD HH:MM:SS)
+- TIMESTAMP (YYYY-MM-DD HH:MM:SS) 时间戳
+
+
+```SQL
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                   |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| employee | CREATE TABLE `employee` (
+  `id` int DEFAULT NULL,
+  `employee_number` varchar(10) DEFAULT NULL,
+  `employee_name` varchar(10) DEFAULT NULL,
+  `gender` char(1) DEFAULT NULL,
+  `age` tinyint unsigned DEFAULT NULL,
+  `idcard` char(18) DEFAULT NULL,
+  `entrydate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
+
+### DDL 表操作、修改表
+- 向表中添加字段
+
+alter table 表明 add 字段名 类型（长度）[comment 注释];
+
+- 修改字段名 和 字段类型
+
+alter table 表名 change 旧字段名 新字段名 类型（长度）[comment 注释];
+
+- 修改字段类型
+
+alter table 表名 modify 旧字段名 新字段名 类型（长度）[comment 注释];
+
+- 删除字段
+
+alter table 表明 drop 字段
+
+- 修改表名
+
+alter table 表名 rename to 新的名字;
+
+- 删除某一个表 (表的数据都会被删除)
+
+drop table 表别名  (drop table if exists tags;)
+
+truncate table 表名 （删除表名、然后创建出来）
