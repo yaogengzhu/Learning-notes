@@ -143,3 +143,64 @@ alter table 表名 rename to 新的名字;
 drop table 表别名  (drop table if exists tags;)
 
 truncate table 表名 （删除表名、然后创建出来）
+
+
+
+### DML
+
+#### 插入数据 insert into
+1. 给指定字段插入数据
+  insert into 表名(字段1，字段2) values(值, ..)
+
+2. 给全部字段添加数据
+   insert into 表名 values(值, ...)
+
+3. 批量添加数据
+    insert into 表名（字段名， 字段2) values(),(),()
+    insert into 表名 values(),(),()
+
+#### 修改数据 update
+
+1. 修改数据
+   1. update 表名 set 字段名1=值1， 字段2=值2， ... where[条件]
+   2. update 表名 set 字段名=值; # 更新表中所有的字段数据（没有where 条件）
+
+2. 删除数据
+ 1.  delete from 表名 where [条件]
+
+
+### DQL data query language (select)
+
+select
+    字段
+from
+    表名
+where
+    条件
+group by
+    分组条件
+having
+    分组条件表
+group by
+    排序字段列表
+limit
+    分页参数
+
+- 基本查询
+- 条件查询
+- 聚合函数
+- 分组查询
+- 排序查询
+- 分页查询
+
+
+#### 基本查询
+1. 查询返回多个字段
+   1. select 字段,...字段n， from 表名
+   2. select * from 表名;
+
+2. 设置别名
+   1. select 字段名 as 别名，字段2 as 别名 ... from 表名
+
+3. 去重复记录
+   1. select distinct 字段列表 from 表名
