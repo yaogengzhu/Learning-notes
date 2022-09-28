@@ -58,6 +58,18 @@ create table 表明（
 )[comment 表注释];
 ```
 
+<!-- INT NOT NULL AUTO_INCREMENT PRIMARY KEY -->
+
+auto_increment
+
+注：1. 如果把“NULL”插入到 AUTO_INCREMENT 数据列里，MySQL 将自动生成下一个序列编号。序列编号从 1 开始，并以“1”为基数递增；
+
+2. 把“0”插入 AUTO_INCREMENT 数据列的效果，与插入“NULL”值一样，但不建议这样做，最好还是直接插入“NULL”值；
+
+3. 在插入记录时，如果没有为 AUTO_INCREMENT 数据列明确地指定一个数值，则等同插入“NULL”值；
+
+4. 在插入或更新记录时，如果为 AUTO_INCREMENT 数据列明确指定了一个数值，则会出现两种情况：情况一，如果插入的值与已有的编号重复，则会出现错误信息，因为 AUTO_INCREMENT 数据列的值必须是唯一的；情况二，如果插入的值大于现有编号的值，则会把该值插入到数据列中，并使 AUTO_INCREMENT 数据列的下一个编号从这个新的编号值开始递增（即跳过了一些编号）。
+
 
 ### SQL DDL  数据类型
 
@@ -204,3 +216,73 @@ limit
 
 3. 去重复记录
    1. select distinct 字段列表 from 表名
+
+#### DQL -条件查询
+
+1. 条件查询 
+   1. 比较运算符
+      1. > = < between ... and  in like is NULL
+   2. 逻辑运算符
+      1. AND  &&  OR || NOT !
+
+### 聚合函数
+聚合函数将作为一个整体，进行纵向计算。
+
+1.  常见的聚合函数
+    1.  cout
+    2.  sum
+    3.  max
+    4.  min
+    5.  avg
+
+用法
+select 聚合函数（字段名）from 表名;
+
+```SQL
+select count(*) from user; # 所有的null不参与计算
+```
+
+```SQL
+select max(age) from user; # 所有的null不参与计算
+```
+
+```SQL
+select sum(age) from user where address = '';
+```
+
+### 分组查询
+1. 语法
+    select 字段列表 表名 [where 条件] group by 分组字段名 [having 分组后过滤条件];
+
+
+    where 和 having的区别
+
+    1. 执行时机不同 where 在分组之前， 不满足where条件，不参与分组、having在分组之后。
+    2. 判断条件不同
+
+
+```SQL
+select gender, count(*) from user group by gender; # 统计男女
+```
+
+注意：
+1. 执行顺序 where > 聚合函数 > having
+2. 分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。
+
+
+### 排序查询
+
+1. 语法
+   1.  select 字段列表 from 表名 order by 字段1 排序方式1, 字段2, 排序方式2  (先按字段1排序，在按字段2排序)
+   2.  asc 升 (默认值), desc 降
+
+
+### 分页查询 limit
+
+1. 语法
+   1. select 字段列表 from 表名 limit 起始索引、查询记录数。
+
+注意：
+ 1. 起始索引从0开始。起始索引 = （查询页码 - 1） * 每个页面记录数
+ 2. 分页查询是数据库的方言，不同的数据库有不同的实现， Mysql 是limit 
+ 3. 如果查询的是第一页数据，起始索引可以省略，直接简写为limit 10。
