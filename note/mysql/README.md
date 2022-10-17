@@ -286,3 +286,9 @@ select gender, count(*) from user group by gender; # 统计男女
  1. 起始索引从0开始。起始索引 = （查询页码 - 1） * 每个页面记录数
  2. 分页查询是数据库的方言，不同的数据库有不同的实现， Mysql 是limit 
  3. 如果查询的是第一页数据，起始索引可以省略，直接简写为limit 10。
+
+ ### 如何查询一个数据库有多少张表
+
+```sql
+select count(*) as 结果 from information_schema.tables where table_schema='xxx'; # xxx 库名
+```
