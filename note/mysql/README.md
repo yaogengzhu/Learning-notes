@@ -1,4 +1,25 @@
+# MYSQL
 
+## 表
+row(行) column(列)
+
+字段(存在数据类型) 约束
+
+
+## SQL语句的分类
+- DQL 数据库查询语言
+   select
+- DML 数据库操作语言
+   insert delete update
+- DDL
+   数据定义语言，凡事带有create、drop、 alter 操作表的结构
+- TCL
+   事务控制
+      事务提交：commit
+      事务回滚：rollback
+- DCL
+   数据控制
+   授权 grant 撤销 revoke
 
 ### 关系刑数据库（RDBMDS） 、非关系型数据库 （非relation-ship)的数据库     redies（key-value) 非关系型数据库
 
