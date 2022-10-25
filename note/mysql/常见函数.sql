@@ -37,8 +37,8 @@ SELECT INSTR('测试', '试') AS output
 
 SELECT TRIM( 'a' FROM '.    aaa   ')
 
-# lpad  用指定的字符实现左填充指定长度
-# rpad  用指定的字符实现右填充指定长度
+# lpad  用指定的字符实现左填充指定长度 (左右填充)
+# rpad  用指定的字符实现右填充指定长度 (左右填充)
 SELECT LPAD('测试',10,'***') 
 
 # repalce 
@@ -46,6 +46,26 @@ SELECT LPAD('测试',10,'***')
 
 SELECT REPLACE('张无忌爱上肘子肉', '肘子肉','赵敏')
 
+
+# 数字函数
+
+# CELL(x) 向上取整
+# FLOOD(X) 向下取整
+# MOD(x,y)	返回x/y的模
+# RAND()	返回0-1内的随机数
+# ROUND(x, y) 求参数x的四舍五入的值, 保留y位小数
+
+
+# 日期函数
+
+# CURDATE() 返回当前日期
+# CURTIME() 返回当前时间
+# NOW() 返回当前日期+事件
+# YEAR(date)  返回date指定的年份
+# MONTH(date)	返回date的月份
+# DAY(date)		返回date的日期
+# DATE_ADD(date, interveal_expr type) 返回上一个日期/时间值加上一个时间间隔expr后的时间值
+# DATEDIFF(date1, data2) 返回起始时间date1 和 结束时间date2之间的天数
 
 
 
