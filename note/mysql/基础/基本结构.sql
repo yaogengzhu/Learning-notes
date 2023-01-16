@@ -34,3 +34,10 @@ update user set pwd = '123456' where id = 1;
 
 -- 删除表数据
 delete from user where id = 2；
+
+
+-- 修改字段类型
+
+alter table `表名` modify `字段名` varchar(25)
+
+-- ALTER table `user`  modify user_name varchar(100);
