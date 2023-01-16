@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function render(vnode, container) {
+                // 使用vnode.tag 作为标签名创建DOM元素
+                const el = document.createElement(vnode.tag);
+                // 将vnode.props中的属性、事件设置到DOM元素上
+                for (const key in vnode.props) {
+                    if (/^on/.test(key)) {
+                        el.addEventListener(
+                            key.slice(2).toLowerCase(), // 事件名称 onClick ===> click
+                            vnode.props[key]
+                        );
+                    } else {
+                        el.setAttribute(key, vnode.props[key]);
+                    }
+                }
+                // 处理chihldren
+                if (typeof vnode.children === 'string') {
+                  // 如果node.children是字符串,表示是文本，直接设置到DOM元素上
+                  el.appendChild(document.createTextNode(vnode.children));
+                } else if (Array.isArray(vnode.children)) {
+                  // 如果node.children是数组，表示有多个子节点，递归调用render函数
+                  vnode.children.forEach((child) => render(child, el));
+                }
+                // 将创建的el元素添加到container中
+                container.appendChild(el);
+            }
+
+            const vnode = {
+                tag: 'div',
+                props: {
+                    id: 'app',
+                    onClick() {
+                        console.log('click');
+                    },
+                },
+                children: [
+                    {
+                        tag: 'p',
+                        props: {
+                            style: 'color: red',
+                        },
+                        children: 'hello world',
+                    },
+                    {
+                        tag: 'p',
+                        props: {},
+                        children: 'hello world',
+                    },
+                ],
+            };
+            render(vnode, document.body);
+        </script>
+    </body>
+</html>
