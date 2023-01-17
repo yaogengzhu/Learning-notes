@@ -18,6 +18,9 @@ desc user;
 -- 删除表
 drop table user;
 
+-- 删除数据库
+drop dabaase egg;
+
 -- 插入表数据
 insert into user values(1, 'user1', '123');
 insert into user(name, pwd) values('user2', '123');
@@ -41,3 +44,8 @@ delete from user where id = 2；
 alter table `表名` modify `字段名` varchar(25)
 
 -- ALTER table `user`  modify user_name varchar(100);
+
+-- 清空表数据
+
+---delete from tablename;  而如果你只是删除一部分数据，就只能使用delete：
+-- truncate table tablename;
