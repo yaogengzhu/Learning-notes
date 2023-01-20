@@ -35,4 +35,12 @@ SELECT content, DATE(send_time) as time FROM ems;
 -- 条件 查询在10分钟内发布的新闻
 SELECT * FROM ems WHERE DATE_ADD(send_time, INTERVAL 30 MINUTE) >= NOW();
 
+-- 有YEAR MONTH DAY HOUR MINUTE SECOND 相关函数
+SELECT MONTH(NOW()) FROM DUAL;
+-- 返回1970年到现在的秒数
+SELECT UNIX_TIMESTAMP() FROM DUAL;
+-- from_unixtime是MySQL里的时间函数date为需要处理的参数（该参数是Unix 时间戳），可以是字段名，也可以直接是Unix 时间戳字符串后面的 '%Y%m%d' 主要是将返回值格式化。
+SELECT UNIX_TIMESTAMP() / (24 * 3600 * 365) as 结果 FROM DUAL;
+-- 若时间用int 存储的话，可以使用from_unixtime函数来转换
+SELECT FROM_UNIXTIME(unix_timestamp(),'%Y-%m-%d') FROM DUAL;
 
