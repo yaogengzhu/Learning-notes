@@ -49,3 +49,6 @@ alter table `表名` modify `字段名` varchar(25)
 
 ---delete from tablename;  而如果你只是删除一部分数据，就只能使用delete：
 -- truncate table tablename;
+
+-- 查询表结构
+show create table emp;
