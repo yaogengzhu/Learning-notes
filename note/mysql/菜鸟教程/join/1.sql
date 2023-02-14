@@ -36,3 +36,34 @@ insert into web_site values(5, 'Facebook', 'https://www.facebook.com/', 3, 'USA'
 insert into web_site values(7, 'stackoverflow', 'http://stackoverflow.com/', 0, 'IND');
 
 select * from web_site;
+
+
+# access_log 
++-----+---------+-------+------------+
+| aid | site_id | count | date       |
++-----+---------+-------+------------+
+|   1 |       1 |    45 | 2016-05-10 |
+|   2 |       3 |   100 | 2016-05-13 |
+|   3 |       1 |   230 | 2016-05-14 |
+|   4 |       2 |    10 | 2016-05-14 |
+|   5 |       5 |   205 | 2016-05-14 |
+|   6 |       4 |    13 | 2016-05-15 |
+|   7 |       3 |   220 | 2016-05-15 |
+|   8 |       5 |   545 | 2016-05-16 |
+|   9 |       3 |   201 | 2016-05-17 |
++-----+---------+-------+------------+
+
+
+create table access_log(
+	aid int auto_increment primary key,
+	site_id int not null,
+	count int not null,
+	date Date not null
+) charset=utf8
+
+insert into access_log values(1, 1, 45, '2016-05-10');
+# 批量插入数据
+insert into access_log values(2, 3, 100, '2016-05-13'), (3, 1, 230, '2016-05-14');
+insert into access_log values(4, 2, 10, '2016-05-14'), (5, 5, 13, '2016-05-15'), (6, 4, 13, '2016-05-15'), (7, 3, 220, '2016-05-15'), (8, 5, 545, '2016-05-16'), (9, 3, 201, '2016-05-17');
+
+SELECT * from access_log;
