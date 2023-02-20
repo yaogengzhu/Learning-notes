@@ -99,6 +99,27 @@ FROM
 WHERE
 	commission_pct is NOT NULL
 
+# 查询也是分先后顺序的， and 的优先级高于 or 可使用（） 来改变优先级
+
+# 范围检查
+select * from image WHERE img_size BETWEEN 800 and 1000
+
+# 检查某个数据是空值
+select * from image where img_key is null;
+
+# 过滤操作符 and OR 
+select count(*) as 数量 from image WHERE id > 100 or img_size  > 1000;
+
+# in 操作符号指定圆括号里所有的数据范围() 数据(,,,,) 逗号分隔
+select * from image where img_size in(914, 915, 1000)
+
+select * from image where category_id in(11, 23, 32, 42) limit 32, 10;
+select count(*) from image where category_id in(11, 23, 32, 42);
+
+# 在or 和 in 之间的区别 优先使用in，in的效率更高，因为in是一个集合，而or是一个一个的比较
+
+# not 操作符号，就是否定not 后面所有跟的条件 
+select count(*) from image where category_id not in(11, 23, 32, 42);
 
 
 
