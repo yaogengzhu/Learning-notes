@@ -13,7 +13,7 @@ function render(vnode, container) {
   }
 }
 
-funnction mountElement(vnode, container) {
+function mountElement(vnode, container) {
   const el = document.createElement(vnode.tag)
   for (const key in vnode.props) {
     if (/^on/.test(key)) {
