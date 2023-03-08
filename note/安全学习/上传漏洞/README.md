@@ -33,3 +33,14 @@
 参考
 [上传漏洞](https://wiki.wgpsec.org/knowledge/ctf/uploadfile.html)
 [实战 | 文件上传漏洞之最全代码检测绕过总结](https://cloud.tencent.com/developer/article/1944149)
+
+
+
+svg 图片攻击
+
+```js
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+   <script>alert(1)</script>
+</svg>
+```
