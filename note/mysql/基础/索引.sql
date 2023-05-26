@@ -14,3 +14,21 @@ create index idx_name on t_user(name);
 -- 索引本身也会占用空间
 -- 索引名字必须是唯一的
 
+
+
+重建索引
+```mysql
+alter table T drop index k;
+
+alter table T add index(k);
+
+```
+
+
+重建组主键索引
+
+```mysql
+alter table T drop primary key;
+
+alter table T add primary key(id);
+```
