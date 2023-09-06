@@ -12,6 +12,38 @@ function fn(n) {
   return fn(n - 1) + fn(n - 2)
 }
 
-const result = fn(5)
+// const result = fn(5)
+// console.log(result)
+
+// 优化解法
+function fn1(n) {
+  const map = new Map()
+  if (n <= 2) return n
+  if (map.get(n)) {
+    return map.get(n)
+  }
+  const ret = fn1(n - 1) + fn1(n - 2)
+  map.set(n, ret)
+  return ret
+}
+
+
+const result = fn1(315)
 console.log(result)
 
+
+// 循环解法
+function fn3(n) {
+  if (n === 1) return 1
+  if (n === 2) return 2
+
+  const result = 0
+  let pre = 2
+  let prepre = 1
+  for (let i = 3; i <= n; i++) {
+    result = pre + prepre
+    prepre = pre
+    pre = result
+  }
+  return result
+}
